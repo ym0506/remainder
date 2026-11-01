@@ -1,0 +1,21 @@
+# Render Blueprint (render.com/docs/blueprint-spec). Secrets use sync: false, so Render asks
+# for them when the Blueprint is created and they never live in this repository.
+services:
+  - type: web
+    name: remainder
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/demo
+    envVars:
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: REMAINDER_DAILY_CLAUDE_CALLS
+        value: "300"
+      - key: REMAINDER_DAILY_SEASONS
+        value: "60"

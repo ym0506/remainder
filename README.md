@@ -67,6 +67,10 @@ Open http://localhost:8765 and go through the six steps. Without an Anthropic ke
 
 Tests (no network): `.venv/bin/python -m unittest discover -s tests -t .`
 
+### Deploy
+
+`render.yaml` is a Render Blueprint: one Python web service. Render asks for `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET` and `ANTHROPIC_API_KEY` when the Blueprint is created. Daily caps on Claude calls and on new sandbox seasons are set there too. On the free plan the service sleeps after 15 idle minutes and its disk is wiped on restart, which only means a visitor starts a new season.
+
 The fake PayPal used in the tests copies the behavior measured in the sandbox above.
 
 ## Limits
