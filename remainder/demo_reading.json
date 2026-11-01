@@ -1,0 +1,19 @@
+{
+  "model": "claude-haiku-5-5",
+  "date": "2026-11-01",
+  "notice": "Alder Creek Youth Soccer - spring season update\n\nDear families,\n\nHollis Park's fields were closed for four of our ten Saturdays this spring after the April floods. The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.\n\nUniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.\n\nThe Okafor family already received a full refund when they moved away in March, so they are not included.\n\nRefunds will go back to the PayPal account or card you paid with.\n\nThanks for your patience,\nDana Whitfield, Treasurer",
+  "reading": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player",
+    "excluded_families": [
+      {
+        "family": "Okafor",
+        "reason": "The Okafor family already received a full refund when they moved away in March",
+        "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+      }
+    ],
+    "questions": []
+  }
+}

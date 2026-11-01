@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remainder</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <h1>Remainder</h1>
+      <p class="lede">Partial refunds to everyone who paid, in proportion, exact to the cent, sent once. Through PayPal.</p>
+      <p class="fine">PayPal sandbox only. The league, the families and every amount are made up.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="s-season" class="step">
+      <h2><span class="num">1</span> The season</h2>
+      <p>Twenty-four families paid this season's registration through PayPal. Fees differ: $120 per player, $108 for a second sibling, $60 on a scholarship. One family, the Okafors, was already refunded in full when they moved.</p>
+      <button id="b-season" class="primary">Create the season in the PayPal sandbox</button>
+      <div id="season-progress" class="progress" hidden><div></div><span></span></div>
+      <details id="season-table" hidden>
+        <summary>24 payments recorded</summary>
+        <table class="ledger">
+          <thead><tr><th>Family</th><th class="n">Players</th><th class="n">Paid</th><th class="n">Refunded before</th><th>PayPal capture</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </details>
+    </section>
+
+    <section id="s-notice" class="step" hidden>
+      <h2><span class="num">2</span> What the treasurer wrote</h2>
+      <p>Claude reads the notice and writes down only what it says, each item with the exact sentence it came from. The code checks that every quote is really in the notice and that every amount is in its quote. Claude never works out anyone's refund.</p>
+      <textarea id="notice" rows="14" spellcheck="false"></textarea>
+      <button id="b-read" class="primary">Read the notice with Claude</button>
+      <div id="reading" hidden>
+        <p id="reading-source" class="fine"></p>
+        <div class="rules"></div>
+        <div id="problems"></div>
+        <div class="quoted"></div>
+      </div>
+    </section>
+
+    <section id="s-plan" class="step" hidden>
+      <h2><span class="num">3</span> The refund plan</h2>
+      <p>Each family's share is the pool times what they paid toward registration, divided by what all included families paid. Everyone gets the whole cents of their exact share. The cents left over go one each to the largest fractions; ties go to whoever paid first.</p>
+      <button id="b-plan" class="primary">Make the plan</button>
+      <div id="plan" hidden>
+        <div class="totals"></div>
+        <table class="ledger">
+          <thead><tr><th>Family</th><th class="n">Paid</th><th class="n">Counted</th><th class="n">Exact share</th><th class="n">Refund</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s-send" class="step" hidden>
+      <h2><span class="num">4</span> Approve and send</h2>
+      <p>Each refund carries its own PayPal-Request-Id, fixed when the plan was made. If the server dies after PayPal made a refund but before we wrote it down, sending again with the same ID gets back the refund PayPal already made instead of a second one.</p>
+      <label class="check"><input type="checkbox" id="crash" checked> Kill the server process right after PayPal answers refund #9, before the answer is saved</label>
+      <button id="b-send" class="primary">Approve and send</button>
+      <div id="crash-banner" class="banner" hidden>
+        <p>The process died after PayPal made refund #9 and before it was written down. One row is stuck in SENDING: we can't tell from our own books whether that family was paid.</p>
+        <button id="b-resume" class="primary">Restart and resume</button>
+      </div>
+    </section>
+
+    <section id="s-check" class="step" hidden>
+      <h2><span class="num">5</span> Check against PayPal</h2>
+      <p>Reads every order back from PayPal and compares PayPal's refunds with the ledger, family by family.</p>
+      <button id="b-check" class="primary">Check against PayPal</button>
+      <div id="check" hidden></div>
+    </section>
+
+    <section id="s-compare" class="step" hidden>
+      <h2><span class="num">6</span> The same crash, without request IDs</h2>
+      <p>A second season with the same families, the same notice and the same plan, sent the usual way: no PayPal-Request-Id, and a plain retry after the crash.</p>
+      <button id="b-compare">Run the comparison</button>
+      <div id="compare-progress" class="progress" hidden><div></div><span></span></div>
+      <div id="compare" hidden></div>
+    </section>
+  </main>
+
+  <footer class="wrap fine">
+    Built on PayPal Orders v2 and Payments v2 (PayPal Server SDK) and Claude.
+    <a href="https://github.com/ym0506/remainder">Source</a>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

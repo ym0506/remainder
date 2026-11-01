@@ -1,0 +1,2081 @@
+{
+  "run_at": "20261101-141816",
+  "findings": {
+    "E1": {
+      "captured": 10,
+      "asked": 10
+    },
+    "E2": {
+      "http": [
+        201,
+        200
+      ],
+      "refund_ids": [
+        "0AH226473H064962D",
+        "0AH226473H064962D"
+      ],
+      "refunds_on_capture": [
+        {
+          "id": "0AH226473H064962D",
+          "value": "10.00",
+          "status": "COMPLETED"
+        }
+      ]
+    },
+    "E3": {
+      "http": [
+        201,
+        201
+      ],
+      "refund_ids": [
+        "8NU877708F504625W",
+        "0UM87668XX448141U"
+      ],
+      "refunds_on_capture": [
+        {
+          "id": "8NU877708F504625W",
+          "value": "5.00",
+          "status": "COMPLETED"
+        },
+        {
+          "id": "0UM87668XX448141U",
+          "value": "5.00",
+          "status": "COMPLETED"
+        }
+      ]
+    },
+    "E4": {
+      "http": 400,
+      "returned_refund_id": null,
+      "same_as_E2_refund": false,
+      "error": "DUPLICATE_REQUEST_ID",
+      "refunds_on_capture": []
+    },
+    "E5": {
+      "asked": "110.01",
+      "http": 422,
+      "error": "REFUND_AMOUNT_EXCEEDED"
+    }
+  },
+  "log": [
+    {
+      "step": "E1 create family-01",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "2fcd4494-fdb9-44e8-99bc-4d14e1316816",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-01",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "8MG6682069997583N",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-01",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "86N68940M6109835X",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "120.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "120.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.60"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "116.40"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8MG6682069997583N",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:28Z",
+                  "update_time": "2026-11-01T05:17:28Z",
+                  "network_transaction_reference": {
+                    "id": "676217554956677",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:28Z",
+        "update_time": "2026-11-01T05:17:28Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8MG6682069997583N",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-02",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "22569610-0b55-40b4-ab02-7110ffe745ca",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-02",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "0BX266127D258600G",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-02",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "117232232F540084L",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "108.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "108.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.29"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "104.71"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/0BX266127D258600G",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:32Z",
+                  "update_time": "2026-11-01T05:17:32Z",
+                  "network_transaction_reference": {
+                    "id": "050103053166245",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:32Z",
+        "update_time": "2026-11-01T05:17:32Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/0BX266127D258600G",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-03",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "d7753ebc-667b-420b-904d-533143af40bf",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-03",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "8TE15114U7650031U",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-03",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "5AB89001KW6166747",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "60.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "60.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "2.04"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "57.96"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/5AB89001KW6166747",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/5AB89001KW6166747/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8TE15114U7650031U",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:36Z",
+                  "update_time": "2026-11-01T05:17:36Z",
+                  "network_transaction_reference": {
+                    "id": "360831280624244",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:36Z",
+        "update_time": "2026-11-01T05:17:36Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8TE15114U7650031U",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-04",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "a22042a0-4d51-4743-a1b6-bc580e85e2f1",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-04",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "5F722688LC468580N",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-04",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "4GW78172HL599693H",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "120.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "120.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.60"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "116.40"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/4GW78172HL599693H",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/4GW78172HL599693H/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/5F722688LC468580N",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:39Z",
+                  "update_time": "2026-11-01T05:17:39Z",
+                  "network_transaction_reference": {
+                    "id": "545029323231679",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:39Z",
+        "update_time": "2026-11-01T05:17:39Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/5F722688LC468580N",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-05",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "055e15f9-c2e3-4176-8e84-687cc711abc0",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-05",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "6B631704PT971942T",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-05",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "3W309105132518317",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "108.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "108.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.29"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "104.71"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/3W309105132518317",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/3W309105132518317/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/6B631704PT971942T",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:43Z",
+                  "update_time": "2026-11-01T05:17:43Z",
+                  "network_transaction_reference": {
+                    "id": "366265138648246",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:43Z",
+        "update_time": "2026-11-01T05:17:43Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/6B631704PT971942T",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-06",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "95ad53f2-b4d7-46e5-97bb-0e0f26059d8b",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-06",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "3D966330TF539725P",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-06",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "2KD63606XJ227112U",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "60.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "60.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "2.04"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "57.96"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/2KD63606XJ227112U",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/2KD63606XJ227112U/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/3D966330TF539725P",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:46Z",
+                  "update_time": "2026-11-01T05:17:46Z",
+                  "network_transaction_reference": {
+                    "id": "675156210275598",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:46Z",
+        "update_time": "2026-11-01T05:17:46Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/3D966330TF539725P",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-07",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "bb9e779f-a4ea-4e6f-81c1-d2bd8235beb8",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-07",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "9A685676WN152304P",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-07",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "3EM50920FU574463T",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "120.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "120.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.60"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "116.40"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/3EM50920FU574463T",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/3EM50920FU574463T/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/9A685676WN152304P",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:49Z",
+                  "update_time": "2026-11-01T05:17:49Z",
+                  "network_transaction_reference": {
+                    "id": "034171645668246",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:49Z",
+        "update_time": "2026-11-01T05:17:49Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/9A685676WN152304P",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-08",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "e2ad8435-6370-4ef8-8a5b-4514638353a7",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-08",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "2H815184W4267853S",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-08",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "59U709245K795902U",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "108.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "108.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.29"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "104.71"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/59U709245K795902U",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/59U709245K795902U/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/2H815184W4267853S",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:53Z",
+                  "update_time": "2026-11-01T05:17:53Z",
+                  "network_transaction_reference": {
+                    "id": "310234873185512",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:53Z",
+        "update_time": "2026-11-01T05:17:53Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/2H815184W4267853S",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-09",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "87d0f859-925e-4849-a5c3-535609b5f796",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-09",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "30122800U2732234F",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-09",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "610026202E630223V",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "60.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "60.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "2.04"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "57.96"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/610026202E630223V",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/610026202E630223V/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/30122800U2732234F",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:57Z",
+                  "update_time": "2026-11-01T05:17:57Z",
+                  "network_transaction_reference": {
+                    "id": "876909737582273",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:57Z",
+        "update_time": "2026-11-01T05:17:57Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/30122800U2732234F",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E1 create family-10",
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "request_id": "96558c0a-4eb4-4cc7-8360-dc32522d50ad",
+      "request": {
+        "intent": "CAPTURE",
+        "purchase_units": [
+          {
+            "reference_id": "family-10",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            }
+          }
+        ],
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "number": "4012888888881881",
+            "expiry": "2030-12",
+            "security_code": "123"
+          }
+        }
+      },
+      "status": 201,
+      "response": {
+        "id": "6HH1263692653120G",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "CREDIT",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-10",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00"
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "3V155466TR061544B",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "120.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "120.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.60"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "116.40"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/3V155466TR061544B",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/3V155466TR061544B/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/6HH1263692653120G",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:18:01Z",
+                  "update_time": "2026-11-01T05:18:01Z",
+                  "network_transaction_reference": {
+                    "id": "473206696367064",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:18:01Z",
+        "update_time": "2026-11-01T05:18:01Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/6HH1263692653120G",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E2 first",
+      "method": "POST",
+      "path": "/v2/payments/captures/86N68940M6109835X/refund",
+      "request_id": "124bc896-a875-47bb-ae01-508db77b2bb4",
+      "request": {
+        "amount": {
+          "currency_code": "USD",
+          "value": "10.00"
+        },
+        "note_to_payer": "Remainder sandbox spike"
+      },
+      "status": 201,
+      "response": {
+        "id": "0AH226473H064962D",
+        "amount": {
+          "currency_code": "USD",
+          "value": "10.00"
+        },
+        "note_to_payer": "Remainder sandbox spike",
+        "seller_payable_breakdown": {
+          "gross_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          },
+          "paypal_fee": {
+            "currency_code": "USD",
+            "value": "0.00"
+          },
+          "net_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          },
+          "total_refunded_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          }
+        },
+        "status": "COMPLETED",
+        "create_time": "2026-10-31T22:18:02-07:00",
+        "update_time": "2026-10-31T22:18:02-07:00",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/refunds/0AH226473H064962D",
+            "rel": "self",
+            "method": "GET"
+          },
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X",
+            "rel": "up",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E2 repeat, same key",
+      "method": "POST",
+      "path": "/v2/payments/captures/86N68940M6109835X/refund",
+      "request_id": "124bc896-a875-47bb-ae01-508db77b2bb4",
+      "request": {
+        "amount": {
+          "currency_code": "USD",
+          "value": "10.00"
+        },
+        "note_to_payer": "Remainder sandbox spike"
+      },
+      "status": 200,
+      "response": {
+        "id": "0AH226473H064962D",
+        "amount": {
+          "currency_code": "USD",
+          "value": "10.00"
+        },
+        "note_to_payer": "Remainder sandbox spike",
+        "seller_payable_breakdown": {
+          "gross_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          },
+          "paypal_fee": {
+            "currency_code": "USD",
+            "value": "0.00"
+          },
+          "net_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          },
+          "total_refunded_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          }
+        },
+        "status": "COMPLETED",
+        "create_time": "2026-10-31T22:18:02-07:00",
+        "update_time": "2026-10-31T22:18:02-07:00",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/refunds/0AH226473H064962D",
+            "rel": "self",
+            "method": "GET"
+          },
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X",
+            "rel": "up",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E2 check",
+      "method": "GET",
+      "path": "/v2/checkout/orders/8MG6682069997583N",
+      "request_id": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "8MG6682069997583N",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "UNKNOWN",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-01",
+            "amount": {
+              "currency_code": "USD",
+              "value": "120.00",
+              "breakdown": {}
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "86N68940M6109835X",
+                  "status": "PARTIALLY_REFUNDED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "120.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "120.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.60"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "116.40"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8MG6682069997583N",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:26Z",
+                  "update_time": "2026-11-01T05:18:02Z",
+                  "network_transaction_reference": {
+                    "id": "676217554956677",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ],
+              "refunds": [
+                {
+                  "id": "0AH226473H064962D",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "10.00"
+                  },
+                  "note_to_payer": "Remainder sandbox spike",
+                  "seller_payable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "10.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "0.00"
+                    },
+                    "platform_fees": [
+                      {
+                        "amount": {
+                          "currency_code": "USD",
+                          "value": "0.00"
+                        }
+                      }
+                    ],
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "10.00"
+                    },
+                    "total_refunded_amount": {
+                      "currency_code": "USD",
+                      "value": "10.00"
+                    }
+                  },
+                  "status": "COMPLETED",
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/refunds/0AH226473H064962D",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/86N68940M6109835X",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-10-31T22:18:02-07:00",
+                  "update_time": "2026-10-31T22:18:02-07:00"
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:26Z",
+        "update_time": "2026-11-01T05:18:02Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8MG6682069997583N",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E3 first, no key",
+      "method": "POST",
+      "path": "/v2/payments/captures/117232232F540084L/refund",
+      "request_id": null,
+      "request": {
+        "amount": {
+          "currency_code": "USD",
+          "value": "5.00"
+        },
+        "note_to_payer": "Remainder sandbox spike"
+      },
+      "status": 201,
+      "response": {
+        "id": "8NU877708F504625W",
+        "amount": {
+          "currency_code": "USD",
+          "value": "5.00"
+        },
+        "note_to_payer": "Remainder sandbox spike",
+        "seller_payable_breakdown": {
+          "gross_amount": {
+            "currency_code": "USD",
+            "value": "5.00"
+          },
+          "paypal_fee": {
+            "currency_code": "USD",
+            "value": "0.00"
+          },
+          "net_amount": {
+            "currency_code": "USD",
+            "value": "5.00"
+          },
+          "total_refunded_amount": {
+            "currency_code": "USD",
+            "value": "5.00"
+          }
+        },
+        "status": "COMPLETED",
+        "create_time": "2026-10-31T22:18:08-07:00",
+        "update_time": "2026-10-31T22:18:08-07:00",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/refunds/8NU877708F504625W",
+            "rel": "self",
+            "method": "GET"
+          },
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L",
+            "rel": "up",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E3 repeat, no key",
+      "method": "POST",
+      "path": "/v2/payments/captures/117232232F540084L/refund",
+      "request_id": null,
+      "request": {
+        "amount": {
+          "currency_code": "USD",
+          "value": "5.00"
+        },
+        "note_to_payer": "Remainder sandbox spike"
+      },
+      "status": 201,
+      "response": {
+        "id": "0UM87668XX448141U",
+        "amount": {
+          "currency_code": "USD",
+          "value": "5.00"
+        },
+        "note_to_payer": "Remainder sandbox spike",
+        "seller_payable_breakdown": {
+          "gross_amount": {
+            "currency_code": "USD",
+            "value": "5.00"
+          },
+          "paypal_fee": {
+            "currency_code": "USD",
+            "value": "0.00"
+          },
+          "net_amount": {
+            "currency_code": "USD",
+            "value": "5.00"
+          },
+          "total_refunded_amount": {
+            "currency_code": "USD",
+            "value": "10.00"
+          }
+        },
+        "status": "COMPLETED",
+        "create_time": "2026-10-31T22:18:11-07:00",
+        "update_time": "2026-10-31T22:18:11-07:00",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/refunds/0UM87668XX448141U",
+            "rel": "self",
+            "method": "GET"
+          },
+          {
+            "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L",
+            "rel": "up",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E3 check",
+      "method": "GET",
+      "path": "/v2/checkout/orders/0BX266127D258600G",
+      "request_id": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "0BX266127D258600G",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "UNKNOWN",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-02",
+            "amount": {
+              "currency_code": "USD",
+              "value": "108.00",
+              "breakdown": {}
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "117232232F540084L",
+                  "status": "PARTIALLY_REFUNDED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "108.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "108.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "3.29"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "104.71"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/0BX266127D258600G",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:30Z",
+                  "update_time": "2026-11-01T05:18:11Z",
+                  "network_transaction_reference": {
+                    "id": "050103053166245",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ],
+              "refunds": [
+                {
+                  "id": "8NU877708F504625W",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "5.00"
+                  },
+                  "note_to_payer": "Remainder sandbox spike",
+                  "seller_payable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "5.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "0.00"
+                    },
+                    "platform_fees": [
+                      {
+                        "amount": {
+                          "currency_code": "USD",
+                          "value": "0.00"
+                        }
+                      }
+                    ],
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "5.00"
+                    },
+                    "total_refunded_amount": {
+                      "currency_code": "USD",
+                      "value": "10.00"
+                    }
+                  },
+                  "status": "COMPLETED",
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/refunds/8NU877708F504625W",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-10-31T22:18:08-07:00",
+                  "update_time": "2026-10-31T22:18:08-07:00"
+                },
+                {
+                  "id": "0UM87668XX448141U",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "5.00"
+                  },
+                  "note_to_payer": "Remainder sandbox spike",
+                  "seller_payable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "5.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "0.00"
+                    },
+                    "platform_fees": [
+                      {
+                        "amount": {
+                          "currency_code": "USD",
+                          "value": "0.00"
+                        }
+                      }
+                    ],
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "5.00"
+                    },
+                    "total_refunded_amount": {
+                      "currency_code": "USD",
+                      "value": "10.00"
+                    }
+                  },
+                  "status": "COMPLETED",
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/refunds/0UM87668XX448141U",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/117232232F540084L",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-10-31T22:18:11-07:00",
+                  "update_time": "2026-10-31T22:18:11-07:00"
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:30Z",
+        "update_time": "2026-11-01T05:18:11Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/0BX266127D258600G",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E4 key from E2, other capture",
+      "method": "POST",
+      "path": "/v2/payments/captures/5AB89001KW6166747/refund",
+      "request_id": "124bc896-a875-47bb-ae01-508db77b2bb4",
+      "request": {
+        "amount": {
+          "currency_code": "USD",
+          "value": "3.00"
+        },
+        "note_to_payer": "Remainder sandbox spike"
+      },
+      "status": 400,
+      "response": {
+        "name": "DUPLICATE_REQUEST_ID",
+        "message": "The value of PayPal-Request-Id header has already been used.",
+        "information_link": "https://developer.paypal.com/docs/api/payments/#errors",
+        "debug_id": "f57405813d7ef"
+      }
+    },
+    {
+      "step": "E4 check",
+      "method": "GET",
+      "path": "/v2/checkout/orders/8TE15114U7650031U",
+      "request_id": null,
+      "request": null,
+      "status": 200,
+      "response": {
+        "id": "8TE15114U7650031U",
+        "intent": "CAPTURE",
+        "status": "COMPLETED",
+        "payment_source": {
+          "card": {
+            "name": "Spike Family",
+            "last_digits": "1881",
+            "expiry": "2030-12",
+            "brand": "VISA",
+            "type": "UNKNOWN",
+            "bin_details": {}
+          }
+        },
+        "purchase_units": [
+          {
+            "reference_id": "family-03",
+            "amount": {
+              "currency_code": "USD",
+              "value": "60.00",
+              "breakdown": {}
+            },
+            "payee": {
+              "email_address": "sb-focuw53655946@business.example.com",
+              "merchant_id": "KVHTZU2DQHYP6"
+            },
+            "soft_descriptor": "TEST STORE",
+            "supplementary_data": {
+              "risk": {
+                "risk_level_indicator": "HIGH_RISK"
+              }
+            },
+            "payments": {
+              "captures": [
+                {
+                  "id": "5AB89001KW6166747",
+                  "status": "COMPLETED",
+                  "amount": {
+                    "currency_code": "USD",
+                    "value": "60.00"
+                  },
+                  "final_capture": true,
+                  "seller_protection": {
+                    "status": "NOT_ELIGIBLE"
+                  },
+                  "seller_receivable_breakdown": {
+                    "gross_amount": {
+                      "currency_code": "USD",
+                      "value": "60.00"
+                    },
+                    "paypal_fee": {
+                      "currency_code": "USD",
+                      "value": "2.04"
+                    },
+                    "net_amount": {
+                      "currency_code": "USD",
+                      "value": "57.96"
+                    }
+                  },
+                  "links": [
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/5AB89001KW6166747",
+                      "rel": "self",
+                      "method": "GET"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/payments/captures/5AB89001KW6166747/refund",
+                      "rel": "refund",
+                      "method": "POST"
+                    },
+                    {
+                      "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8TE15114U7650031U",
+                      "rel": "up",
+                      "method": "GET"
+                    }
+                  ],
+                  "create_time": "2026-11-01T05:17:34Z",
+                  "update_time": "2026-11-01T05:17:34Z",
+                  "network_transaction_reference": {
+                    "id": "360831280624244",
+                    "network": "VISA"
+                  },
+                  "processor_response": {
+                    "cvv_code": "M",
+                    "response_code": "0000"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "create_time": "2026-11-01T05:17:34Z",
+        "update_time": "2026-11-01T05:17:34Z",
+        "links": [
+          {
+            "href": "https://api.sandbox.paypal.com/v2/checkout/orders/8TE15114U7650031U",
+            "rel": "self",
+            "method": "GET"
+          }
+        ]
+      }
+    },
+    {
+      "step": "E5 one cent over",
+      "method": "POST",
+      "path": "/v2/payments/captures/86N68940M6109835X/refund",
+      "request_id": null,
+      "request": {
+        "amount": {
+          "currency_code": "USD",
+          "value": "110.01"
+        },
+        "note_to_payer": "Remainder sandbox spike"
+      },
+      "status": 422,
+      "response": {
+        "name": "UNPROCESSABLE_ENTITY",
+        "message": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+        "debug_id": "f6003171c9667",
+        "details": [
+          {
+            "issue": "REFUND_AMOUNT_EXCEEDED",
+            "description": "The refund amount must be less than or equal to the capture amount that has not yet been refunded."
+          }
+        ],
+        "links": [
+          {
+            "href": "https://developer.paypal.com/docs/api/payments/v2/#error-REFUND_AMOUNT_EXCEEDED",
+            "rel": "information_link"
+          }
+        ]
+      }
+    }
+  ]
+}
