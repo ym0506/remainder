@@ -155,11 +155,21 @@ function renderReading() {
   $("#s-replies").hidden = !cleared(problems);
 }
 
+function clearPlan() {
+  if (state.round && state.round.approved) return;
+  state.round = null;
+  state.check = null;
+  for (const id of ["#plan", "#s-send", "#s-check", "#s-compare", "#crash-banner", "#summary"]) $(id).hidden = true;
+  $("#b-plan").hidden = false;
+}
+
 async function readNotice() {
   say("#read-status", "Claude is reading the notice...");
   state.reading = await api("POST", "/api/read", { season_id: state.seasonId, notice: $("#notice").value });
   state.replies = null;
+  state.confirmed = [];
   say("#read-status", "");
+  clearPlan();
   for (const id of ["#s-plan", "#replies-source"]) $(id).hidden = true;
   $("#replies-problems").innerHTML = "";
   renderReading();
@@ -180,7 +190,7 @@ function replyEffect(r) {
   if (r.kind === "keep_share") {
     const on = !state.ignored.includes(r.reply_id);
     return `Their share is worked out as usual and kept for the club instead of refunded. ` +
-      `<label class="check small inline"><input type="checkbox" data-keep="${r.reply_id}" ${on ? "checked" : ""}> Apply</label>`;
+      `<label class="check small inline"><input type="checkbox" data-keep="${r.reply_id}" ${on ? "checked" : ""} ${state.round ? "disabled" : ""}> Apply</label>`;
   }
   if (r.kind === "question" && r.notice_quote) return `The notice answers it. Suggested reply: <q>${esc(r.notice_quote)}</q>`;
   if (r.kind === "question") return "The notice doesn't answer this, so the plan waits until you confirm the rules stay as they are.";
@@ -225,7 +235,9 @@ function renderReplies() {
 async function sortReplies() {
   say("#replies-status", "Claude is reading the replies...");
   state.replies = await api("POST", "/api/replies", { season_id: state.seasonId });
+  state.ignored = [];
   say("#replies-status", "");
+  clearPlan();
   renderReplies();
 }
 
@@ -283,6 +295,8 @@ function renderReceipt(round) {
 }
 
 function renderPlan(round) {
+  state.confirmed = round.confirmed;
+  state.ignored = round.ignored;
   renderRows(round);
   renderReceipt(round);
   show("#s-plan");
@@ -290,6 +304,7 @@ function renderPlan(round) {
   $("#b-plan").hidden = true;
   $("#b-send").textContent = `Approve and send ${round.refunds} refunds`;
   show("#s-send");
+  if (state.replies) renderInbox();
 }
 
 async function makePlan() {
@@ -297,7 +312,6 @@ async function makePlan() {
     season_id: state.seasonId,
     confirmed: state.confirmed,
     ignored_replies: state.ignored,
-    use_request_ids: true,
   });
   if (round.existing) say("#plan-status", `${round.existing}, so it is shown here instead of a second plan.`);
   renderPlan(round);
@@ -308,6 +322,10 @@ async function makePlan() {
 
 async function runUntilStopped(seasonId, roundId, crashAfter, onUpdate) {
   await api("POST", "/api/run", { season_id: seasonId, round_id: roundId, crash_after_send: crashAfter });
+  return pollUntilStopped(seasonId, roundId, onUpdate);
+}
+
+async function pollUntilStopped(seasonId, roundId, onUpdate) {
   for (;;) {
     await sleep(600);
     const round = await api("GET", `/api/round/${seasonId}/${roundId}`);
@@ -319,7 +337,7 @@ async function runUntilStopped(seasonId, roundId, crashAfter, onUpdate) {
 function afterRound(round) {
   const unfinished = (round.states.PLANNED || 0) + (round.states.SENDING || 0);
   const sending = round.rows.find((r) => r.state === "SENDING");
-  $("#crash-banner").hidden = !(round.approved && unfinished);
+  $("#crash-banner").hidden = !(round.approved && unfinished && round.worker !== "running");
   if (sending) $("#crash-family").textContent = `the ${sending.family_name} family`;
   $("#b-send").hidden = round.approved;
   $("#crash").disabled = round.approved;
@@ -376,9 +394,8 @@ async function compare() {
   await waitForSeason(season_id, progress);
   const round = await api("POST", "/api/plan", {
     season_id,
-    confirmed: state.confirmed,
-    ignored_replies: state.ignored,
-    use_request_ids: false,
+    confirmed: state.round.confirmed,
+    ignored_replies: state.round.ignored,
     copy_from: state.seasonId,
   });
   const total = round.refunds;
@@ -425,6 +442,14 @@ async function start() {
   if (me.round) {
     renderPlan(me.round);
     afterRound(me.round);
+    if (me.round.worker === "running") {
+      await step("#b-resume", "#send-status", async () => {
+        say("#send-status", "Still sending...");
+        const round = await pollUntilStopped(state.seasonId, me.round.round_id, renderRows);
+        say("#send-status", "");
+        afterRound(round);
+      });
+    }
   }
 }
 

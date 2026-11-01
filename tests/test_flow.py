@@ -82,6 +82,13 @@ class RulesTest(unittest.TestCase):
         problems = rules.check(rules.Rules.from_json(bad), demo.NOTICE, self.season.payments)
         self.assertIn("does not appear in its quote", problems[0].message)
 
+    def test_plural_and_possessive_family_names_count(self):
+        for quote in ("The Okafors already received a full refund when they moved away in March.",
+                      "Okafor's family already received a full refund when they moved away in March."):
+            notice = demo.NOTICE.replace(DEMO_RULES["excluded_families"][0]["quote"], quote)
+            ok = dict(DEMO_RULES, excluded_families=[{"family": "Okafor", "reason": "moved", "quote": quote}])
+            self.assertEqual(rules.check(rules.Rules.from_json(ok), notice, self.season.payments), [])
+
     def test_unknown_family_is_caught(self):
         bad = dict(DEMO_RULES, excluded_families=[dict(DEMO_RULES["excluded_families"][0], family="Okafur")])
         fields = [p.field for p in rules.check(rules.Rules.from_json(bad), demo.NOTICE, self.season.payments)]
@@ -154,12 +161,59 @@ class RoundTest(unittest.TestCase):
         self.assertEqual(self.season.paypal.calls, 23)
 
     def test_no_new_round_while_one_is_unfinished(self):
-        first = self.season.round(approve=False)
+        first = self.season.round(approve=True)
         r = rules.Rules.from_json(DEMO_RULES)
         lines = rules.plan(r, self.season.ledger.payments(), demo.TITLE)
         with self.assertRaises(RoundExists) as caught:
             self.season.ledger.create_round(demo.TITLE, demo.NOTICE + "\nP.S.", r.to_json(), r.pool_cents, lines)
         self.assertEqual(caught.exception.round_id, first)
+
+
+class RoundRaceTest(unittest.TestCase):
+    def test_two_plans_at_once_make_one_round(self):
+        import threading
+
+        season = Season(self)
+        path = season.ledger.db.execute("PRAGMA database_list").fetchone()[2]
+        r = rules.Rules.from_json(DEMO_RULES)
+        lines = rules.plan(r, season.payments, demo.TITLE)
+        outcomes, start = [], threading.Barrier(2)
+
+        def make():
+            ledger = Ledger(path)
+            start.wait()
+            try:
+                outcomes.append(ledger.create_round(demo.TITLE, demo.NOTICE, r.to_json(), r.pool_cents, lines))
+            except RoundExists as exc:
+                outcomes.append(exc)
+            finally:
+                ledger.close()
+
+        threads = [threading.Thread(target=make) for _ in range(2)]
+        for th in threads:
+            th.start()
+        for th in threads:
+            th.join()
+        # Unapproved plans replace each other, so whichever ran second is the only one left.
+        survivors = [row[0] for row in season.ledger.db.execute("SELECT round_id FROM rounds")]
+        self.assertEqual(len(survivors), 1)
+        self.assertIn(survivors[0], outcomes)
+        self.assertEqual(len(season.ledger.rows(survivors[0])), 24)
+
+    def test_an_unapproved_plan_is_replaced_by_a_corrected_notice(self):
+        season = Season(self)
+        first = season.round(approve=False)
+        r = rules.Rules.from_json(dict(DEMO_RULES, pool_amount="900.00"))
+        notice = demo.NOTICE.replace("$1,000.00", "$900.00")
+        r = rules.Rules.from_json(
+            dict(DEMO_RULES, pool_amount="900.00", pool_quote=DEMO_RULES["pool_quote"].replace("$1,000.00", "$900.00"))
+        )
+        lines = rules.plan(r, season.ledger.payments(), demo.TITLE)
+        second = season.ledger.create_round(demo.TITLE, notice, r.to_json(), r.pool_cents, lines)
+        self.assertNotEqual(first, second)
+        with self.assertRaises(KeyError):
+            season.ledger.round(first)
+        self.assertEqual(season.ledger.round(second).pool_cents, 90000)
 
 
 class RunTest(unittest.TestCase):
@@ -282,6 +336,28 @@ class RunTest(unittest.TestCase):
         statuses = {f.status for f in reconcile(self.season.ledger, self.season.paypal, round_id).families}
         self.assertIn("IN_FLIGHT", statuses)
         self.assertNotIn("UNRECORDED_REFUND", statuses)
+
+    def test_a_failed_refund_found_by_lookup_is_held(self):
+        round_id = self.season.round()
+        target = self.season.ledger.rows(round_id, states=("PLANNED",))[0]
+        self.season.ledger.mark_sending(round_id, target.family_id)
+        failed = self.season.paypal.refund_now(target.capture_id, target.share_cents, target.request_id)
+        self.season.paypal.captures[target.capture_id]["refunds"][-1] = failed.__class__(
+            failed.refund_id, failed.cents, "FAILED", failed.custom_id, failed.create_time
+        )
+        run(self.season.ledger, self.season.paypal, round_id, log=lambda m: None)
+        row = next(r for r in self.season.ledger.rows(round_id) if r.family_id == target.family_id)
+        self.assertEqual((row.state, row.detail), ("HELD", "PayPal refund failed"))
+
+    def test_a_lookup_is_not_logged_as_a_request(self):
+        round_id = self.season.round()
+        target = self.season.ledger.rows(round_id, states=("PLANNED",))[0]
+        self.season.paypal.drop_answer_once.add(target.capture_id)
+        run(self.season.ledger, self.season.paypal, round_id, log=lambda m: None)
+        run(self.season.ledger, self.season.paypal, round_id, log=lambda m: None)
+        mine = [a for a in self.season.ledger.attempts(round_id) if a["family_id"] == target.family_id]
+        self.assertEqual([a["http_status"] for a in mine], [None, None])
+        self.assertIn("not sent", mine[-1]["error"])
 
     def test_plan_that_does_not_add_up_is_rejected(self):
         r = rules.Rules.from_json(DEMO_RULES)

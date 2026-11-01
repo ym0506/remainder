@@ -1,7 +1,8 @@
 """In-memory stand-in for the PayPal refund API.
 
-It copies what the sandbox actually did on 2026-11-01 (spike-20261101-141816.json and
-evidence/sandbox-run-2026-11-01.json):
+It copies what the sandbox actually did on 2026-11-01 (spike/results/spike-20261101-141816.json
+for the first four; the last is how the sender found Jensen's refund in
+evidence/sandbox-run-20261101T0633Z.json):
   - same PayPal-Request-Id, same capture: HTTP 200 and the refund already made
   - no PayPal-Request-Id: a new refund every time
   - a used PayPal-Request-Id on another capture: HTTP 400 DUPLICATE_REQUEST_ID

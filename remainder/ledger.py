@@ -1,8 +1,9 @@
 """SQLite ledger: who paid, what each refund round plans, and every PayPal answer that was saved.
 
-A plan row moves PLANNED -> SENDING -> DONE or HELD. SENDING is written and committed
-before PayPal is called, so after a crash we know which refunds may already exist at
-PayPal and must be sent again with the same request ID, never a new one.
+A plan row with nothing to send is SKIPPED; the others move PLANNED -> SENDING -> DONE or
+HELD. SENDING is written and committed before PayPal is called, so after a crash we know
+which refunds may already exist at PayPal: the sender looks those up on the order first
+and sends again only with the same request ID, never a new one.
 """
 
 import json
@@ -178,19 +179,28 @@ class Ledger:
     # rounds
 
     def create_round(self, title, notice, rules_json, pool_cents, lines, use_request_ids=True):
-        """Save a plan. Refuses a second plan for the same notice, and any new plan while one is unfinished."""
+        """Save a plan, checked and written in one write transaction.
+
+        A plan nobody has approved and nothing has been sent for is replaced. Otherwise a
+        second plan for the same notice is refused, and so is any new plan while another
+        round still has refunds waiting to go out.
+        """
         if sum(line.share_cents + line.kept_cents for line in lines) != pool_cents:
             raise ValueError("plan does not add up to the pool")
-        for r in self.db.execute("SELECT round_id, notice FROM rounds ORDER BY created_at").fetchall():
-            if _norm(r["notice"]) == _norm(notice):
-                raise RoundExists(r["round_id"], "a refund round for this notice already exists")
-            if self.rows(r["round_id"], states=("PLANNED", "SENDING")):
-                raise RoundExists(r["round_id"], "another refund round is still being sent")
         round_id = "r-" + uuid.uuid4().hex[:12]
-        captures = {p.family_id: p.capture_id for p in self.payments()}
         stamp = now()
         with self.db:
-            self.db.execute("BEGIN")
+            self.db.execute("BEGIN IMMEDIATE")
+            for r in self.db.execute("SELECT round_id, notice, approved_at FROM rounds ORDER BY created_at").fetchall():
+                touched = self.rows(r["round_id"], states=("SENDING", "DONE", "HELD"))
+                if r["approved_at"] is None and not touched:
+                    self.db.execute("DELETE FROM plan_rows WHERE round_id = ?", (r["round_id"],))
+                    self.db.execute("DELETE FROM rounds WHERE round_id = ?", (r["round_id"],))
+                elif _norm(r["notice"]) == _norm(notice):
+                    raise RoundExists(r["round_id"], "a refund round for this notice already exists")
+                elif self.rows(r["round_id"], states=("PLANNED", "SENDING")):
+                    raise RoundExists(r["round_id"], "another refund round still has refunds to send")
+            captures = {p.family_id: p.capture_id for p in self.payments()}
             self.db.execute(
                 "INSERT INTO rounds VALUES (?, ?, ?, ?, ?, ?, ?, NULL)",
                 (round_id, title, notice, json.dumps(rules_json), pool_cents, int(use_request_ids), stamp),
@@ -264,10 +274,10 @@ class Ledger:
         run looks it up at PayPal and, if it isn't there, sends it again with the same ID.
         """
         status = outcome.http_status
-        if found:
-            state, detail = "DONE", "PayPal already had this refund; it was not sent again"
-        elif status in (200, 201) and outcome.refund_status in ("FAILED", "CANCELLED"):
+        if (found or status in (200, 201)) and outcome.refund_status in ("FAILED", "CANCELLED"):
             state, detail = "HELD", f"PayPal refund {outcome.refund_status.lower()}"
+        elif found:
+            state, detail = "DONE", "PayPal already had this refund; it was not sent again"
         elif status in (200, 201):
             state, detail = "DONE", ("PayPal returned the refund it already made" if status == 200 else "")
         elif status is None or status >= 500 or status in RETRY_LATER:

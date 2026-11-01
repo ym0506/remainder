@@ -43,7 +43,8 @@ def run(ledger, gateway, round_id, crash_after_send=None, die=_die, log=print):
         if rnd.use_request_ids and row.state == "SENDING":
             seen = find_refund(gateway, row.order_id, row.request_id)
             if seen:
-                ledger.record(round_id, row.family_id, row.request_id, RefundOutcome(200, seen.refund_id, seen.status), found=True)
+                found = RefundOutcome(None, seen.refund_id, seen.status, "found on the order by custom_id; not sent")
+                ledger.record(round_id, row.family_id, row.request_id, found, found=True)
                 log(f"{row.family_name}: PayPal already has {seen.refund_id}; not sent again")
                 continue
         if not ledger.mark_sending(round_id, row.family_id):

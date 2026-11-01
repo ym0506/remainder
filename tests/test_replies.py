@@ -45,6 +45,11 @@ class RepliesCheckTest(unittest.TestCase):
         problems = replies.check(self.good()[:5], demo.REPLIES, demo.NOTICE, SHARING)
         self.assertIn("Claude did not sort this reply", [p.message for p in problems])
 
+    def test_a_reply_sorted_twice_blocks_the_plan(self):
+        twice = self.good() + [reading(0, "no_action", "Thanks for sorting this out.")]
+        problems = replies.check(twice, demo.REPLIES, demo.NOTICE, SHARING)
+        self.assertIn("replies", [p.field for p in problems if not p.confirmable])
+
     def test_redirect_requests_change_nothing(self):
         self.assertEqual(replies.keep_list(self.good()), ["Chen"])
 

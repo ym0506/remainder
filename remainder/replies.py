@@ -96,6 +96,8 @@ def check(sorted_replies, replies, notice, plan_families):
     """Problems to fix or confirm. plan_families: names that get a share in this round."""
     problems = []
     seen = {s.reply_id for s in sorted_replies}
+    if len(seen) != len(sorted_replies):
+        problems.append(Problem("replies", "Claude sorted the same reply more than once; sort them again"))
     for i, (family, _) in enumerate(replies):
         if i not in seen:
             problems.append(Problem(f"reply:{family}", "Claude did not sort this reply"))

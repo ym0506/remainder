@@ -1,8 +1,10 @@
 """Web app for Remainder. Each visitor gets their own season (own SQLite file, own sandbox payments).
 
-What Claude read is stored on the server with the season, and the plan is built from that,
-not from anything the browser sends back. The browser only says which questions the
-treasurer confirmed and which reply suggestions they turned off.
+What Claude read is stored on the server with the season, and the plan is built from that.
+For a plan the browser only says which questions the treasurer confirmed and which "keep
+our share" replies they turned off. Whether request IDs are used is decided here: always
+for a visitor's season, never for a comparison season, which may copy its readings only
+from another season.
 """
 
 import json
@@ -83,7 +85,7 @@ def _ledger(season_id, seeded=True):
 
 def _seed(season_id, spare=False):
     seeding[season_id] = {"done": 0, "total": len(demo.FAMILIES), "error": ""}
-    ledger = Ledger(str(DATA / f"{season_id}.db"))
+    ledger = None
 
     def pay(label, cents):
         result = gateway.pay_with_test_card(label, cents)
@@ -92,6 +94,7 @@ def _seed(season_id, spare=False):
         return result
 
     try:
+        ledger = Ledger(str(DATA / f"{season_id}.db"))
         season.seed(ledger, pay, gateway.refund_in_full, workers=6)
         ledger.set_meta("seeded", "1")
         if spare:
@@ -100,7 +103,8 @@ def _seed(season_id, spare=False):
     except Exception as exc:  # shown to the visitor; the season is unusable
         seeding[season_id]["error"] = f"{type(exc).__name__}: {exc}"
     finally:
-        ledger.close()
+        if ledger is not None:
+            ledger.close()
         if spare:
             with lock:
                 spares_pending[0] -= 1
@@ -234,10 +238,17 @@ class ReadRequest(BaseModel):
     notice: str = Field(max_length=5000)
 
 
+def _refuse_if_approved(ledger):
+    for r in ledger.db.execute("SELECT approved_at FROM rounds").fetchall():
+        if r["approved_at"]:
+            raise HTTPException(409, "this season's refunds are already approved; start a new season to try another notice")
+
+
 @app.post("/api/read")
 def read_notice(body: ReadRequest):
     ledger = _ledger(body.season_id)
     try:
+        _refuse_if_approved(ledger)
         payments = ledger.payments()
         saved = notice.saved_reading_for(body.notice)
         reading = notice.read_with_claude(body.notice, [p.family_name for p in payments]) if _claude_allowed() else None
@@ -267,6 +278,7 @@ def _plan_families(ledger, stored):
 def sort_replies(body: RepliesRequest):
     ledger = _ledger(body.season_id)
     try:
+        _refuse_if_approved(ledger)
         stored = json.loads(ledger.get_meta("reading") or "null")
         if not stored:
             raise HTTPException(409, "read the notice first")
@@ -290,12 +302,14 @@ class PlanRequest(BaseModel):
     season_id: str
     confirmed: list[str] = []
     ignored_replies: list[int] = []
-    use_request_ids: bool = True
     copy_from: str | None = None  # the comparison season reuses the main season's readings
 
 
 @app.post("/api/plan")
 def make_plan(body: PlanRequest):
+    comparison = body.season_id.startswith("cmp-")
+    if comparison != bool(body.copy_from):
+        raise HTTPException(422, "only a comparison season copies readings, and it must")
     source = _ledger(body.copy_from or body.season_id)
     try:
         stored = json.loads(source.get_meta("reading") or "null")
@@ -314,7 +328,6 @@ def make_plan(body: PlanRequest):
         problems = rules.check(r, stored["notice"], payments) + replies.check(
             active, demo.REPLIES, stored["notice"], _plan_families(ledger, stored)
         )
-        problems = [p for p in problems if not (p.message == "Claude did not sort this reply" and body.ignored_replies)]
         still_open = rules.open_problems(problems, set(body.confirmed))
         if still_open:
             raise HTTPException(422, {"problems": _problems_json(still_open)})
@@ -324,7 +337,7 @@ def make_plan(body: PlanRequest):
             raise HTTPException(422, {"problems": [{"field": "pool", "message": str(exc), "confirmable": False}]})
         record = {**r.to_json(), "confirmed": body.confirmed, "replies": [replies.to_json(s) for s in active]}
         try:
-            round_id = ledger.create_round(demo.TITLE, stored["notice"], record, r.pool_cents, lines, body.use_request_ids)
+            round_id = ledger.create_round(demo.TITLE, stored["notice"], record, r.pool_cents, lines, not comparison)
         except RoundExists as exc:
             return {**_round_json(ledger, exc.round_id), "existing": str(exc)}
         return _round_json(ledger, round_id)

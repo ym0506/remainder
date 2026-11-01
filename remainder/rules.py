@@ -114,9 +114,12 @@ def _money_in(text):
 
 
 def _sentences(notice):
+    """Sentences of the text. Lines inside a paragraph are joined first, so a sentence
+    wrapped across lines is still one sentence; blank lines separate paragraphs."""
     found = []
-    for line in notice.splitlines():
-        found.extend(_norm(s).rstrip(".!?") for s in _SENTENCE_BREAK.split(line.strip()) if s.strip())
+    for paragraph in re.split(r"\n\s*\n", notice):
+        joined = " ".join(line.strip() for line in paragraph.splitlines())
+        found.extend(_norm(s).rstrip(".!?") for s in _SENTENCE_BREAK.split(joined) if s.strip())
     return found
 
 
@@ -133,7 +136,9 @@ def _whole_sentences(quote, sentences, longest=3):
 
 
 def _names(name, text):
-    return re.search(rf"(?<![\w'-]){re.escape(_norm(name))}(?![\w'-])", _norm(text)) is not None
+    """The family name as a word of its own; "the Okafors" and "Okafor's" count, "visitors" doesn't."""
+    pattern = rf"(?<![\w'-]){re.escape(_norm(name))}(?:'s|s'|s)?(?![\w'-])"
+    return re.search(pattern, _norm(text)) is not None
 
 
 def check(rules, notice, payments):
