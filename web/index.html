@@ -3,88 +3,108 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Remainder</title>
+  <title>Remainder: fair-share refunds for groups</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
   <header class="top">
     <div class="wrap">
-      <h1>Remainder</h1>
-      <p class="lede">Partial refunds to everyone who paid, in proportion, exact to the cent, sent once. Through PayPal.</p>
+      <h1>Remainder <span class="tag">fair-share refunds for groups</span></h1>
+      <p class="lede">Split a partial refund across everyone who paid, exact to the cent, and send each PayPal refund once.</p>
       <p class="fine">PayPal sandbox only. The league, the families and every amount are made up.</p>
     </div>
   </header>
 
   <main class="wrap">
+    <div id="summary" class="summary" hidden></div>
+
     <section id="s-season" class="step">
       <h2><span class="num">1</span> The season</h2>
-      <p>Twenty-four families paid this season's registration through PayPal. Fees differ: $120 per player, $108 for a second sibling, $60 on a scholarship. One family, the Okafors, was already refunded in full when they moved.</p>
-      <button id="b-season" class="primary">Create the season in the PayPal sandbox</button>
+      <p>Alder Creek Youth Soccer collected registration from 24 families through PayPal: $120 per player, $108 for a second sibling, $60 on a scholarship. The Okafors were refunded in full when they moved.</p>
+      <button id="b-season" class="primary">Open the season</button>
+      <p class="status" id="season-status"></p>
       <div id="season-progress" class="progress" hidden><div></div><span></span></div>
       <details id="season-table" hidden>
-        <summary>24 payments recorded</summary>
+        <summary></summary>
         <table class="ledger">
-          <thead><tr><th>Family</th><th class="n">Players</th><th class="n">Paid</th><th class="n">Refunded before</th><th>PayPal capture</th></tr></thead>
+          <thead><tr><th>Family</th><th class="n">Players</th><th class="n">Paid</th><th class="n">Refunded before</th><th class="wide">PayPal capture</th></tr></thead>
           <tbody></tbody>
         </table>
       </details>
     </section>
 
     <section id="s-notice" class="step" hidden>
-      <h2><span class="num">2</span> What the treasurer wrote</h2>
-      <p>Claude reads the notice and writes down only what it says, each item with the exact sentence it came from. The code checks that every quote is really in the notice and that every amount is in its quote. Claude never works out anyone's refund.</p>
-      <textarea id="notice" rows="14" spellcheck="false"></textarea>
+      <h2><span class="num">2</span> The treasurer's notice</h2>
+      <p>Claude writes down what the notice says, each item with the sentence it came from. Code checks that every quote is a whole sentence of the notice and that every amount is in its quote. Claude never works out anyone's refund.</p>
+      <textarea id="notice" rows="13" spellcheck="false" maxlength="5000"></textarea>
       <button id="b-read" class="primary">Read the notice with Claude</button>
+      <p class="status" id="read-status"></p>
       <div id="reading" hidden>
         <p id="reading-source" class="fine"></p>
         <div class="rules"></div>
-        <div id="problems"></div>
+        <div class="problems"></div>
         <div class="quoted"></div>
       </div>
     </section>
 
+    <section id="s-replies" class="step" hidden>
+      <h2><span class="num">3</span> Replies from families</h2>
+      <p>Six families answered the notice. Claude sorts each reply and quotes the sentence that shows what they want. Only one kind of reply can change money: asking the club to keep their share. Nothing here can send a refund anywhere except back to the payment it came from.</p>
+      <div id="inbox"></div>
+      <button id="b-replies" class="primary">Sort the replies with Claude</button>
+      <p class="status" id="replies-status"></p>
+      <p id="replies-source" class="fine" hidden></p>
+      <div class="problems" id="replies-problems"></div>
+    </section>
+
     <section id="s-plan" class="step" hidden>
-      <h2><span class="num">3</span> The refund plan</h2>
-      <p>Each family's share is the pool times what they paid toward registration, divided by what all included families paid. Everyone gets the whole cents of their exact share. The cents left over go one each to the largest fractions; ties go to whoever paid first.</p>
+      <h2><span class="num">4</span> The refund plan</h2>
+      <p>Each family's share of the pool is in proportion to what counts from their payment. Everyone gets the whole cents of their exact share, and the cents left over go one each to the largest fractions.</p>
       <button id="b-plan" class="primary">Make the plan</button>
+      <p class="status" id="plan-status"></p>
       <div id="plan" hidden>
-        <div class="totals"></div>
-        <table class="ledger">
-          <thead><tr><th>Family</th><th class="n">Paid</th><th class="n">Counted</th><th class="n">Exact share</th><th class="n">Refund</th><th>Status</th></tr></thead>
+        <label class="check small"><input type="checkbox" id="show-math"> Show the math</label>
+        <table class="ledger" id="plan-table">
+          <thead><tr><th>Family</th><th class="n">Paid</th><th class="n math">Counted</th><th class="n math">Exact share</th><th class="n">Refund</th><th>Status</th></tr></thead>
           <tbody></tbody>
         </table>
+        <p class="fine math" id="math-note"></p>
+        <div id="receipt" class="receipt"></div>
       </div>
     </section>
 
     <section id="s-send" class="step" hidden>
-      <h2><span class="num">4</span> Approve and send</h2>
-      <p>Each refund carries its own PayPal-Request-Id, fixed when the plan was made. If the server dies after PayPal made a refund but before we wrote it down, sending again with the same ID gets back the refund PayPal already made instead of a second one.</p>
-      <label class="check"><input type="checkbox" id="crash" checked> Kill the server process right after PayPal answers refund #9, before the answer is saved</label>
+      <h2><span class="num">5</span> Approve and send</h2>
+      <p>Each refund carries a PayPal-Request-Id chosen when the plan was made, and the same ID as its custom_id. If the sending process dies after PayPal made a refund but before it was written down, the next run finds that refund on the order and does not send it again.</p>
+      <label class="check"><input type="checkbox" id="crash" checked> Kill the sending process right after PayPal answers refund #9, before the answer is saved</label>
       <button id="b-send" class="primary">Approve and send</button>
+      <p class="status" id="send-status"></p>
       <div id="crash-banner" class="banner" hidden>
-        <p>The process died after PayPal made refund #9 and before it was written down. One row is stuck in SENDING: we can't tell from our own books whether that family was paid.</p>
+        <p>The sending process died after PayPal answered refund #9 and before the answer was saved. Our books can't tell whether <b id="crash-family"></b> was paid.</p>
         <button id="b-resume" class="primary">Restart and resume</button>
       </div>
     </section>
 
     <section id="s-check" class="step" hidden>
-      <h2><span class="num">5</span> Check against PayPal</h2>
+      <h2><span class="num">6</span> Check against PayPal</h2>
       <p>Reads every order back from PayPal and compares PayPal's refunds with the ledger, family by family.</p>
       <button id="b-check" class="primary">Check against PayPal</button>
+      <p class="status" id="check-status"></p>
       <div id="check" hidden></div>
     </section>
 
     <section id="s-compare" class="step" hidden>
-      <h2><span class="num">6</span> The same crash, without request IDs</h2>
-      <p>A second season with the same families, the same notice and the same plan, sent the usual way: no PayPal-Request-Id, and a plain retry after the crash.</p>
+      <h2><span class="num">7</span> For comparison: no request IDs</h2>
+      <p>A fresh season with the same 24 families, the same notice, replies and plan, sent without a PayPal-Request-Id and retried after the same crash.</p>
       <button id="b-compare">Run the comparison</button>
+      <p class="status" id="compare-status"></p>
       <div id="compare-progress" class="progress" hidden><div></div><span></span></div>
       <div id="compare" hidden></div>
     </section>
   </main>
 
   <footer class="wrap fine">
-    Built on PayPal Orders v2 and Payments v2 (PayPal Server SDK) and Claude.
+    PayPal Orders v2 and Payments v2 through the PayPal Server SDK; Claude Haiku 5.5 through the Anthropic API.
     <a href="https://github.com/ym0506/remainder">Source</a>
   </footer>
 

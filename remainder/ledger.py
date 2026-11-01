@@ -1,4 +1,4 @@
-"""SQLite ledger: who paid, what each refund round plans, and every call made to PayPal.
+"""SQLite ledger: who paid, what each refund round plans, and every PayPal answer that was saved.
 
 A plan row moves PLANNED -> SENDING -> DONE or HELD. SENDING is written and committed
 before PayPal is called, so after a crash we know which refunds may already exist at
@@ -11,7 +11,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
-from .rules import Payment
+from .rules import Payment, _norm
 
 # Fixed namespace so a (round, capture) pair always maps to the same PayPal-Request-Id.
 REQUEST_ID_NAMESPACE = uuid.UUID("6f1c2f0e-5b2a-4a51-9a0f-2f7c1d3e8b40")
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS plan_rows (
     exact TEXT NOT NULL,
     extra_cent INTEGER NOT NULL,
     excluded TEXT NOT NULL,
+    kept_cents INTEGER NOT NULL DEFAULT 0 CHECK (kept_cents >= 0),
     note TEXT NOT NULL,
     request_id TEXT NOT NULL UNIQUE,
     state TEXT NOT NULL CHECK (state IN ('PLANNED', 'SENDING', 'DONE', 'HELD', 'SKIPPED')),
@@ -101,6 +102,7 @@ class Row:
     exact: str
     extra_cent: bool
     excluded: str
+    kept_cents: int
     note: str
     request_id: str
     state: str
@@ -108,6 +110,16 @@ class Row:
     replayed: bool
     detail: str
     paid_at: str
+
+
+# Answers that mean "not now" rather than "no": the refund may or may not exist yet.
+RETRY_LATER = {408, 409, 425, 429}
+
+
+class RoundExists(Exception):
+    def __init__(self, round_id, reason):
+        super().__init__(reason)
+        self.round_id = round_id
 
 
 def now():
@@ -166,8 +178,14 @@ class Ledger:
     # rounds
 
     def create_round(self, title, notice, rules_json, pool_cents, lines, use_request_ids=True):
-        if sum(line.share_cents for line in lines) != pool_cents:
+        """Save a plan. Refuses a second plan for the same notice, and any new plan while one is unfinished."""
+        if sum(line.share_cents + line.kept_cents for line in lines) != pool_cents:
             raise ValueError("plan does not add up to the pool")
+        for r in self.db.execute("SELECT round_id, notice FROM rounds ORDER BY created_at").fetchall():
+            if _norm(r["notice"]) == _norm(notice):
+                raise RoundExists(r["round_id"], "a refund round for this notice already exists")
+            if self.rows(r["round_id"], states=("PLANNED", "SENDING")):
+                raise RoundExists(r["round_id"], "another refund round is still being sent")
         round_id = "r-" + uuid.uuid4().hex[:12]
         captures = {p.family_id: p.capture_id for p in self.payments()}
         stamp = now()
@@ -180,7 +198,7 @@ class Ledger:
             for line in lines:
                 self.db.execute(
                     "INSERT INTO plan_rows (round_id, family_id, share_cents, weight_cents, exact, extra_cent, excluded,"
-                    " note, request_id, state, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    " kept_cents, note, request_id, state, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     (
                         round_id,
                         line.family_id,
@@ -189,6 +207,7 @@ class Ledger:
                         line.exact,
                         int(line.extra_cent),
                         line.excluded,
+                        line.kept_cents,
                         line.note,
                         request_id_for(round_id, captures[line.family_id]),
                         "PLANNED" if line.share_cents else "SKIPPED",
@@ -231,19 +250,30 @@ class Ledger:
     # sending
 
     def mark_sending(self, round_id, family_id):
-        self.db.execute(
+        """False if the row is no longer waiting to be sent (another runner finished it)."""
+        cur = self.db.execute(
             "UPDATE plan_rows SET state = 'SENDING', updated_at = ? WHERE round_id = ? AND family_id = ? AND state IN ('PLANNED', 'SENDING')",
             (now(), round_id, family_id),
         )
+        return cur.rowcount == 1
 
-    def record(self, round_id, family_id, request_id, outcome):
-        """Write down what PayPal answered. Unknown outcomes stay SENDING, to be sent again."""
-        if outcome.http_status in (200, 201):
-            state, detail = "DONE", ("PayPal returned the refund it already made" if outcome.http_status == 200 else "")
-        elif outcome.http_status is None or outcome.http_status >= 500:
-            state, detail = "SENDING", f"no clear answer ({outcome.error or outcome.http_status}); will send again with the same request ID"
+    def record(self, round_id, family_id, request_id, outcome, found=False):
+        """Write down what PayPal answered. Only a SENDING row changes; DONE is never undone.
+
+        Unclear answers (no answer, 5xx, 408/409/425/429) leave the row SENDING, so the next
+        run looks it up at PayPal and, if it isn't there, sends it again with the same ID.
+        """
+        status = outcome.http_status
+        if found:
+            state, detail = "DONE", "PayPal already had this refund; it was not sent again"
+        elif status in (200, 201) and outcome.refund_status in ("FAILED", "CANCELLED"):
+            state, detail = "HELD", f"PayPal refund {outcome.refund_status.lower()}"
+        elif status in (200, 201):
+            state, detail = "DONE", ("PayPal returned the refund it already made" if status == 200 else "")
+        elif status is None or status >= 500 or status in RETRY_LATER:
+            state, detail = "SENDING", f"no clear answer ({outcome.error or status}); will check PayPal and resend with the same request ID"
         else:
-            state, detail = "HELD", outcome.error or f"HTTP {outcome.http_status}"
+            state, detail = "HELD", outcome.error or f"HTTP {status}"
         with self.db:
             self.db.execute("BEGIN")
             self.db.execute(
@@ -253,8 +283,8 @@ class Ledger:
             )
             self.db.execute(
                 "UPDATE plan_rows SET state = ?, paypal_refund_id = COALESCE(?, paypal_refund_id), replayed = ?,"
-                " detail = ?, updated_at = ? WHERE round_id = ? AND family_id = ?",
-                (state, outcome.refund_id, int(outcome.http_status == 200), detail, now(), round_id, family_id),
+                " detail = ?, updated_at = ? WHERE round_id = ? AND family_id = ? AND state = 'SENDING'",
+                (state, outcome.refund_id, int(status == 200 or found), detail, now(), round_id, family_id),
             )
 
     # reconciling

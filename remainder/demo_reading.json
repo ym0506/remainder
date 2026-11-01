@@ -6,11 +6,11 @@
     "pool_amount": "1000.00",
     "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
     "non_refundable_per_player": "15.00",
-    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
     "excluded_families": [
       {
         "family": "Okafor",
-        "reason": "The Okafor family already received a full refund when they moved away in March",
+        "reason": "The Okafor family already received a full refund when they moved away in March.",
         "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
       }
     ],

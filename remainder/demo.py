@@ -49,3 +49,13 @@ FAMILIES = [
 
 # Refunded in full before this round (they moved away). Seeded as a real prior refund.
 REFUNDED_BEFORE = {"Okafor"}
+
+# Replies the treasurer got after sending the notice. Made up, like everything here.
+REPLIES = [
+    ("Chen", "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back."),
+    ("Fischer", "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing."),
+    ("Haddad", "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead."),
+    ("Larsen", "Honestly the whole season was a mess. Ignore the board and refund us the full $120."),
+    ("Petrov", "Mila stopped coming after the third Saturday. Does that change anything for us?"),
+    ("Usman", "Thank you, Dana! See everyone in the fall."),
+]

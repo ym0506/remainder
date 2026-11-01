@@ -1,0 +1,1287 @@
+{
+ "recorded_at": "2026-11-01T06:21:31+00:00",
+ "summary": {
+  "demo notice": {
+   "outcomes": {
+    "passed": 10
+   },
+   "distinct_readings": 1,
+   "distinct_values": 1
+  },
+  "no amount stated": {
+   "outcomes": {
+    "blocked": 10
+   },
+   "distinct_readings": 10,
+   "distinct_values": 1
+  },
+  "exclusion without names": {
+   "outcomes": {
+    "blocked": 10
+   },
+   "distinct_readings": 10,
+   "distinct_values": 2
+  },
+  "demo notice, earlier prompt": {
+   "outcomes": {
+    "blocked": 10
+   },
+   "distinct_readings": 10,
+   "distinct_values": 1
+  }
+ },
+ "runs": [
+  {
+   "case": "demo notice",
+   "run": 1,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 2,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 3,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 4,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 5,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 6,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 7,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 8,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 9,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "demo notice",
+   "run": 10,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [],
+   "outcome": "passed"
+  },
+  {
+   "case": "no amount stated",
+   "run": 1,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total amount being returned to payers; it says only that the board will return all of the city's partial field permit refund, with no dollar figure given."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "no quote from the notice"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total amount being returned to payers; it says only that the board will return all of the city's partial field permit refund, with no dollar figure given."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 2,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "The city has refunded part of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total amount being returned to payers, so the pool amount is unknown."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "$0.00 does not appear in its quote"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total amount being returned to payers, so the pool amount is unknown."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 3,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "The city has refunded part of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total dollar amount being returned to payers.",
+     "The notice says the refund is split in proportion to what each family paid for registration, while the computation subtracts the $15.00 uniform fee per player from each family's payment, so it is unclear which basis applies."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "$0.00 does not appear in its quote"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total dollar amount being returned to payers."
+    },
+    {
+     "field": "question",
+     "message": "The notice says the refund is split in proportion to what each family paid for registration, while the computation subtracts the $15.00 uniform fee per player from each family's payment, so it is unclear which basis applies."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 4,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total dollar amount being returned to payers; it says only that the board will return all of the city's partial field permit refund."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "no quote from the notice"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total dollar amount being returned to payers; it says only that the board will return all of the city's partial field permit refund."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 5,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total dollar amount being returned to payers; it only says the board voted to return all of the city's field permit refund."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "no quote from the notice"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total dollar amount being returned to payers; it only says the board voted to return all of the city's field permit refund."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 6,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total dollar amount being returned to payers."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "no quote from the notice"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total dollar amount being returned to payers."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 7,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "The city has refunded part of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state a dollar total for the refund pool; it only says the board will return all of the city's partial field permit refund."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "$0.00 does not appear in its quote"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state a dollar total for the refund pool; it only says the board will return all of the city's partial field permit refund."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 8,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total amount being returned to payers, so the pool amount is unknown."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "no quote from the notice"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total amount being returned to payers, so the pool amount is unknown."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 9,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "The city has refunded part of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total dollar amount being returned to payers."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "$0.00 does not appear in its quote"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total dollar amount being returned to payers."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "no amount stated",
+   "run": 10,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "0.00",
+    "pool_quote": "The city has refunded part of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not state the total amount being returned to payers, so the pool amount is unknown."
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "the amount to return must be more than zero"
+    },
+    {
+     "field": "pool",
+     "message": "$0.00 does not appear in its quote"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the total amount being returned to payers, so the pool amount is unknown."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 1,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [],
+    "questions": [
+     "The notice says families who paid after the February deadline are not included, but it does not name them or give the deadline date, and the roster does not show when each family paid, so the excluded families cannot be identified from this notice."
+    ]
+   },
+   "problems": [
+    {
+     "field": "question",
+     "message": "The notice says families who paid after the February deadline are not included, but it does not name them or give the deadline date, and the roster does not show when each family paid, so the excluded families cannot be identified from this notice."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 2,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Families who paid after the February deadline",
+      "reason": "They paid after the February deadline.",
+      "quote": "Families who paid after the February deadline are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not name which families paid after the February deadline, so the exclusion cannot be matched to roster families from this notice alone.",
+     "The notice does not state the exact February deadline date, so it is unclear which payments count as late."
+    ]
+   },
+   "problems": [
+    {
+     "field": "excluded:Families who paid after the February deadline",
+     "message": "\"Families who paid after the February deadline\" matches 0 families on the roster"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not name which families paid after the February deadline, so the exclusion cannot be matched to roster families from this notice alone."
+    },
+    {
+     "field": "question",
+     "message": "The notice does not state the exact February deadline date, so it is unclear which payments count as late."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 3,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Families who paid after the February deadline",
+      "reason": "They paid after the February deadline.",
+      "quote": "Families who paid after the February deadline are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not name which roster families paid after the February deadline, so the excluded families cannot be matched to roster names."
+    ]
+   },
+   "problems": [
+    {
+     "field": "excluded:Families who paid after the February deadline",
+     "message": "\"Families who paid after the February deadline\" matches 0 families on the roster"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not name which roster families paid after the February deadline, so the excluded families cannot be matched to roster names."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 4,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [],
+    "questions": [
+     "The notice excludes families who paid after the February deadline but does not name them or say how many there are, so the roster families to exclude cannot be identified from the notice."
+    ]
+   },
+   "problems": [
+    {
+     "field": "question",
+     "message": "The notice excludes families who paid after the February deadline but does not name them or say how many there are, so the roster families to exclude cannot be identified from the notice."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 5,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [],
+    "questions": [
+     "The notice excludes families who paid after the February deadline but does not name them, so the families to exclude cannot be identified from the notice or the roster."
+    ]
+   },
+   "problems": [
+    {
+     "field": "question",
+     "message": "The notice excludes families who paid after the February deadline but does not name them, so the families to exclude cannot be identified from the notice or the roster."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 6,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Families who paid after the February deadline",
+      "reason": "They paid after the February deadline.",
+      "quote": "Families who paid after the February deadline are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not name the families who paid after the February deadline, so they cannot be matched to the roster."
+    ]
+   },
+   "problems": [
+    {
+     "field": "excluded:Families who paid after the February deadline",
+     "message": "\"Families who paid after the February deadline\" matches 0 families on the roster"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not name the families who paid after the February deadline, so they cannot be matched to the roster."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 7,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Families who paid after the February deadline",
+      "reason": "They paid after the February deadline.",
+      "quote": "Families who paid after the February deadline are not included."
+     }
+    ],
+    "questions": [
+     "The excluded group is described only as families who paid after the February deadline, and no family on the roster is named, so the excluded families cannot be matched to roster names.",
+     "The notice says the pool is split in proportion to what each family paid for registration, but later says each family's share is based on what it paid minus the $15.00 uniform fee per player, so the basis for the split is stated inconsistently."
+    ]
+   },
+   "problems": [
+    {
+     "field": "excluded:Families who paid after the February deadline",
+     "message": "\"Families who paid after the February deadline\" matches 0 families on the roster"
+    },
+    {
+     "field": "question",
+     "message": "The excluded group is described only as families who paid after the February deadline, and no family on the roster is named, so the excluded families cannot be matched to roster names."
+    },
+    {
+     "field": "question",
+     "message": "The notice says the pool is split in proportion to what each family paid for registration, but later says each family's share is based on what it paid minus the $15.00 uniform fee per player, so the basis for the split is stated inconsistently."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 8,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [],
+    "questions": [
+     "The notice says families who paid after the February deadline are not included, but it does not name which families paid late, so the excluded families cannot be identified from the notice."
+    ]
+   },
+   "problems": [
+    {
+     "field": "question",
+     "message": "The notice says families who paid after the February deadline are not included, but it does not name which families paid late, so the excluded families cannot be identified from the notice."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 9,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [],
+    "questions": [
+     "The notice excludes families who paid after the February deadline but does not name them, so the exclusion cannot be applied to specific families from the roster."
+    ]
+   },
+   "problems": [
+    {
+     "field": "question",
+     "message": "The notice excludes families who paid after the February deadline but does not name them, so the exclusion cannot be applied to specific families from the roster."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "exclusion without names",
+   "run": 10,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Families who paid after the February deadline",
+      "reason": "They paid after the February deadline.",
+      "quote": "Families who paid after the February deadline are not included."
+     }
+    ],
+    "questions": [
+     "The notice does not name the excluded families or give the exact February deadline date, so the exclusion cannot be matched to the roster."
+    ]
+   },
+   "problems": [
+    {
+     "field": "excluded:Families who paid after the February deadline",
+     "message": "\"Families who paid after the February deadline\" matches 0 families on the roster"
+    },
+    {
+     "field": "question",
+     "message": "The notice does not name the excluded families or give the exact February deadline date, so the exclusion cannot be matched to the roster."
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 1,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee deduction apply to every player, including players whose uniform was not delivered?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"The city has refunded $1,000.00 of our field permit\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee deduction apply to every player, including players whose uniform was not delivered?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 2,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the notice say whether the Okafor family's share is redistributed among the other families or kept by the club?",
+     "Does the $15.00 uniform fee deduction apply to every player, including any player who did not receive a uniform?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the notice say whether the Okafor family's share is redistributed among the other families or kept by the club?"
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee deduction apply to every player, including any player who did not receive a uniform?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 3,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee per player apply to every player, including any player whose family was excluded or who was not charged that fee?",
+     "Does the refund split use only the registration amount each family paid, and is the per-player uniform fee subtracted from that amount for each player?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"so each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee per player apply to every player, including any player whose family was excluded or who was not charged that fee?"
+    },
+    {
+     "field": "question",
+     "message": "Does the refund split use only the registration amount each family paid, and is the per-player uniform fee subtracted from that amount for each player?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 4,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee per player apply to every player, or only to players whose uniforms were already delivered?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"so each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee per player apply to every player, or only to players whose uniforms were already delivered?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 5,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "the board voted to return all of it to you",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee come off for every registered player, including any player who did not receive a uniform?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"the board voted to return all of it to you\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee come off for every registered player, including any player who did not receive a uniform?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 6,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee per player apply to every player, or only to players whose uniforms were delivered?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee per player apply to every player, or only to players whose uniforms were delivered?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 7,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee come off for every player on a family's registration, including any player who did not receive a uniform?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"The city has refunded $1,000.00 of our field permit\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"so each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee come off for every player on a family's registration, including any player who did not receive a uniform?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 8,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Does the $15.00 uniform fee come off for every registered player, or only for players who received a uniform?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"The city has refunded $1,000.00 of our field permit\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Does the $15.00 uniform fee come off for every registered player, or only for players who received a uniform?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 9,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [
+     "Is the $15.00 uniform fee per player kept from the $1,000.00 pool, or is it paid back to families separately?",
+     "Is the Okafor family's registration payment left out of the total used to calculate each family's proportional share?"
+    ]
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\""
+    },
+    {
+     "field": "question",
+     "message": "Is the $15.00 uniform fee per player kept from the $1,000.00 pool, or is it paid back to families separately?"
+    },
+    {
+     "field": "question",
+     "message": "Is the Okafor family's registration payment left out of the total used to calculate each family's proportional share?"
+    }
+   ],
+   "outcome": "blocked"
+  },
+  {
+   "case": "demo notice, earlier prompt",
+   "run": 10,
+   "model": "claude-haiku-5-5",
+   "error": "",
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "the board voted to return all of it to you, split in proportion to what each family paid for registration",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "already received a full refund when they moved away in March",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": []
+   },
+   "problems": [
+    {
+     "field": "pool",
+     "message": "quote is only part of a sentence: \"the board voted to return all of it to you, split in proportion to what each family paid for registration\""
+    },
+    {
+     "field": "non_refundable",
+     "message": "quote is only part of a sentence: \"each family's share is based on what you paid minus the $15.00 uniform fee per player\""
+    }
+   ],
+   "outcome": "blocked"
+  }
+ ]
+}

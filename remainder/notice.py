@@ -30,7 +30,7 @@ the whole pool is shared among the families that are not excluded, in proportion
 - pool_quote: the sentence that states that total, including the amount as written.
 - non_refundable_per_player: an amount per player that is left out of each family's share, or null if the notice names none.
 - excluded_families: families the notice says get nothing from this refund, with the reason the notice gives.
-- Every quote must be copied word for word from the notice, one sentence or clause, with no changes.
+- Every quote must be one whole sentence of the notice, copied word for word from its first word to its last, with no changes. Use two or three consecutive sentences only if one is not enough.
 - questions: only for something the notice leaves open or states in a way that conflicts with the computation above. If the notice and the computation agree, leave questions empty.
 
 The roster below lists the family names on record, so you can spell exclusions the way the roster does."""

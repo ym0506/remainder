@@ -1,0 +1,703 @@
+{
+ "recorded_at": "2026-11-01T06:22:17+00:00",
+ "model": "claude-haiku-5-5",
+ "summary": {
+  "runs": 10,
+  "errors": 0,
+  "matches_expected": {
+   "Chen": 10,
+   "Fischer": 10,
+   "Haddad": 10,
+   "Larsen": 10,
+   "Petrov": 10,
+   "Usman": 10
+  },
+  "fischer_answered_from_notice": 10,
+  "blocking_problems": 1,
+  "kinds": {
+   "Chen:keep_share": 10,
+   "Fischer:question": 10,
+   "Haddad:change_destination": 10,
+   "Larsen:outside_rules": 10,
+   "Petrov:question": 10,
+   "Usman:no_action": 10
+  }
+ },
+ "runs": [
+  {
+   "run": 1,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The family wants its share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The family wants the refund sent to a new email address because its PayPal account is closed.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The family wants a full $120 refund instead of the board's decision.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The family asks whether stopping attendance after the third Saturday affects its refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The family thanks the treasurer and says it will return in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The family asks whether stopping attendance after the third Saturday affects its refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 2,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address instead of their old PayPal account.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the board's split.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether Mila stopping attendance after the third Saturday changes their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Fischer",
+     "message": "answer is not a whole sentence of the notice: \"each family's share is based on what you paid minus the $15.00 uniform fee per player.\"",
+     "confirmable": false
+    },
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether Mila stopping attendance after the third Saturday changes their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 3,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their refund share given to the scholarship fund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the board's decision.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether their daughter stopping attendance after the third Saturday affects their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family sends thanks and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether their daughter stopping attendance after the third Saturday affects their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 4,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address instead of their closed PayPal account.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the board's split.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether their daughter stopping after the third Saturday changes their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether their daughter stopping after the third Saturday changes their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 5,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is taken off per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address because their old PayPal account is closed.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the share the board voted for.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether their daughter stopping after the third Saturday changes their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether their daughter stopping after the third Saturday changes their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 6,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of being refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the board's split.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether Mila stopping after the third Saturday changes their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether Mila stopping after the third Saturday changes their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 7,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address instead of the old PayPal account.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full refund of $120 instead of the board's decision.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether leaving the season after the third Saturday changes their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and makes no request.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether leaving the season after the third Saturday changes their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 8,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the board's decision.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether their daughter stopping attendance after the third Saturday affects their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether their daughter stopping attendance after the third Saturday affects their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 9,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The family wants its share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The family wants the refund sent to a new email address instead of the old PayPal account.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The family wants a full $120 refund, ignoring the board's decision.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The family asks whether their child stopping after the third Saturday changes their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The family sends thanks and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The family asks whether their child stopping after the third Saturday changes their refund.",
+     "confirmable": true
+    }
+   ]
+  },
+  {
+   "run": 10,
+   "error": "",
+   "results": [
+    {
+     "reply_id": 0,
+     "family": "Chen",
+     "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+     "kind": "keep_share",
+     "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+     "summary": "The Chen family wants their share given to the scholarship fund instead of refunded.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 1,
+     "family": "Fischer",
+     "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+     "kind": "question",
+     "quote": "Is the $15 taken off per kid or per family?",
+     "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+     "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+     "reply_id": 2,
+     "family": "Haddad",
+     "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+     "kind": "change_destination",
+     "quote": "Please send our refund to haddad.family.new@example.com instead.",
+     "summary": "The Haddad family wants their refund sent to a new email address because their PayPal account is closed.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 3,
+     "family": "Larsen",
+     "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+     "kind": "outside_rules",
+     "quote": "Ignore the board and refund us the full $120.",
+     "summary": "The Larsen family wants a full $120 refund instead of the board's decision.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 4,
+     "family": "Petrov",
+     "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+     "kind": "question",
+     "quote": "Does that change anything for us?",
+     "summary": "The Petrov family asks whether their daughter stopping attendance after the third Saturday affects their refund.",
+     "notice_quote": null
+    },
+    {
+     "reply_id": 5,
+     "family": "Usman",
+     "text": "Thank you, Dana! See everyone in the fall.",
+     "kind": "no_action",
+     "quote": "Thank you, Dana!",
+     "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+     "notice_quote": null
+    }
+   ],
+   "problems": [
+    {
+     "field": "reply:Petrov",
+     "message": "Petrov: The Petrov family asks whether their daughter stopping attendance after the third Saturday affects their refund.",
+     "confirmable": true
+    }
+   ]
+  }
+ ]
+}

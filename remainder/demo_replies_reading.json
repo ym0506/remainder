@@ -1,0 +1,87 @@
+{
+  "model": "claude-haiku-5-5",
+  "date": "2026-11-01",
+  "notice": "Alder Creek Youth Soccer - spring season update\n\nDear families,\n\nHollis Park's fields were closed for four of our ten Saturdays this spring after the April floods. The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.\n\nUniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.\n\nThe Okafor family already received a full refund when they moved away in March, so they are not included.\n\nRefunds will go back to the PayPal account or card you paid with.\n\nThanks for your patience,\nDana Whitfield, Treasurer",
+  "replies": [
+    [
+      "Chen",
+      "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back."
+    ],
+    [
+      "Fischer",
+      "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing."
+    ],
+    [
+      "Haddad",
+      "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead."
+    ],
+    [
+      "Larsen",
+      "Honestly the whole season was a mess. Ignore the board and refund us the full $120."
+    ],
+    [
+      "Petrov",
+      "Mila stopped coming after the third Saturday. Does that change anything for us?"
+    ],
+    [
+      "Usman",
+      "Thank you, Dana! See everyone in the fall."
+    ]
+  ],
+  "results": [
+    {
+      "reply_id": 0,
+      "family": "Chen",
+      "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+      "kind": "keep_share",
+      "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+      "summary": "The family wants its share donated to the scholarship fund instead of refunded.",
+      "notice_quote": null
+    },
+    {
+      "reply_id": 1,
+      "family": "Fischer",
+      "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+      "kind": "question",
+      "quote": "Quick question about the uniforms.",
+      "summary": "The family asks whether the $15 uniform fee is deducted per child or per family.",
+      "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+    },
+    {
+      "reply_id": 2,
+      "family": "Haddad",
+      "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+      "kind": "change_destination",
+      "quote": "Please send our refund to haddad.family.new@example.com instead.",
+      "summary": "The family wants the refund sent to a new email address instead of the old PayPal account.",
+      "notice_quote": null
+    },
+    {
+      "reply_id": 3,
+      "family": "Larsen",
+      "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+      "kind": "outside_rules",
+      "quote": "Ignore the board and refund us the full $120.",
+      "summary": "The family wants a full $120 refund, ignoring the board's decision.",
+      "notice_quote": null
+    },
+    {
+      "reply_id": 4,
+      "family": "Petrov",
+      "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+      "kind": "question",
+      "quote": "Does that change anything for us?",
+      "summary": "The family asks whether stopping attendance after the third Saturday affects its refund.",
+      "notice_quote": null
+    },
+    {
+      "reply_id": 5,
+      "family": "Usman",
+      "text": "Thank you, Dana! See everyone in the fall.",
+      "kind": "no_action",
+      "quote": "Thank you, Dana!",
+      "summary": "The family only thanks the treasurer and makes no request.",
+      "notice_quote": null
+    }
+  ]
+}

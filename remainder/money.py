@@ -10,6 +10,8 @@ def to_cents(value):
         cents = Decimal(text) * 100
     except InvalidOperation as exc:
         raise ValueError(f"not an amount: {value!r}") from exc
+    if not cents.is_finite():
+        raise ValueError(f"not an amount: {value!r}")
     if cents != cents.to_integral_value():
         raise ValueError(f"more than two decimals: {value!r}")
     return int(cents)

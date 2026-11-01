@@ -17,9 +17,19 @@ class SeenRefund:
     refund_id: str
     cents: int
     status: str
+    custom_id: str | None = None  # we put the row's request ID here when sending
+    create_time: str | None = None
 
 
 class Gateway(Protocol):
-    def refund(self, capture_id: str, cents: int, request_id: str | None, note: str) -> RefundOutcome: ...
+    def refund(self, capture_id: str, cents: int, request_id: str | None, note: str, custom_id: str) -> RefundOutcome: ...
 
     def refunds_on(self, order_id: str) -> list[SeenRefund]: ...
+
+
+def find_refund(gateway, order_id, custom_id):
+    """The refund PayPal already holds for this row, if any."""
+    for seen in gateway.refunds_on(order_id):
+        if seen.custom_id == custom_id:
+            return seen
+    return None
