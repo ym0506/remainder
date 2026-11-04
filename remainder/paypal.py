@@ -5,6 +5,7 @@ also sent as the refund's custom_id, so the refund can be found again on the ord
 Only the sandbox environment is ever configured here.
 """
 
+import hashlib
 import os
 import uuid
 from pathlib import Path
@@ -46,6 +47,11 @@ def load_env_file(path=ENV_FILE):
                 key, value = line.split("=", 1)
                 values[key.strip()] = value.strip().strip('"').strip("'")
     return values
+
+
+def _fingerprint(value):
+    """Enough to compare a credential with your own copy without showing it."""
+    return f"{len(value)} characters, SHA-256 {hashlib.sha256(value.encode()).hexdigest()[:8]}"
 
 
 def _issue(exc):
@@ -92,7 +98,11 @@ class PayPalGateway:
             reason = r.json().get("error_description") or r.json().get("error") or ""
         except ValueError:
             reason = ""
-        return f"PayPal answered HTTP {r.status_code}{': ' + reason if reason else ''}"
+        answer = f"PayPal answered HTTP {r.status_code}{': ' + reason if reason else ''}"
+        if r.status_code == 401:
+            client_id, secret = self._credentials
+            answer += f" (this server's client ID: {_fingerprint(client_id)}; secret: {_fingerprint(secret)})"
+        return answer
 
     def refund(self, capture_id, cents, request_id, note, custom_id):
         options = {
