@@ -17,6 +17,7 @@ from contextlib import asynccontextmanager
 from datetime import date
 from pathlib import Path
 
+from apimatic_core.exceptions.auth_validation_exception import AuthValidationException
 from fastapi import Cookie, FastAPI, HTTPException, Request, Response
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -101,6 +102,9 @@ def _seed(season_id, spare=False):
         if spare:
             with lock:
                 spares.append(season_id)
+    except AuthValidationException:
+        problem = gateway.sign_in_problem() or "PayPal refused a request, then accepted the credentials"
+        seeding[season_id]["error"] = f"PayPal sign-in failed. {problem}. Check PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET."
     except Exception as exc:  # shown to the visitor; the season is unusable
         seeding[season_id]["error"] = f"{type(exc).__name__}: {exc}"
     finally:

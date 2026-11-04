@@ -16,6 +16,7 @@ os.environ.update(
     ANTHROPIC_API_KEY="",
 )
 
+from apimatic_core.exceptions.auth_validation_exception import AuthValidationException  # noqa: E402
 from fastapi.testclient import TestClient  # noqa: E402
 
 import app as webapp  # noqa: E402
@@ -45,6 +46,25 @@ class AppTest(unittest.TestCase):
     def setUpClass(cls):
         notice._client = lambda: None  # Claude unavailable: saved readings only
         cls.client = TestClient(webapp.app)
+
+    def test_a_refused_paypal_sign_in_says_why(self):
+        class Refused:
+            def pay_with_test_card(self, label, cents):
+                raise AuthValidationException("[ClientCredentialsAuth: OAuthToken is undefined or expired.]")
+
+            def refund_in_full(self, capture_id, cents):
+                raise AssertionError("no payment was made")
+
+            def sign_in_problem(self):
+                return "PayPal answered HTTP 401: Client Authentication failed"
+
+        real = webapp.gateway
+        webapp.gateway = Refused()
+        self.addCleanup(setattr, webapp, "gateway", real)
+        webapp._seed("s-refused1")
+        error = self.client.get("/api/season/s-refused1").json()["seeding"]["error"]
+        self.assertIn("HTTP 401: Client Authentication failed", error)
+        self.assertIn("PAYPAL_CLIENT_SECRET", error)
 
     def test_written_reply_must_come_from_a_family_on_the_roster(self):
         make_season("s-roster1")

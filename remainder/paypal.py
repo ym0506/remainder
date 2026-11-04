@@ -34,6 +34,7 @@ ENV_FILE = Path.home() / ".config" / "paypal-remainder" / ".env"
 TEST_CARD = {"name": "Demo Family", "number": "4012888888881881", "expiry": "2030-12", "security_code": "123"}
 
 NOTE_LIMIT = 255  # note_to_payer maximum length
+TOKEN_URL = "https://api-m.sandbox.paypal.com/v1/oauth2/token"
 
 
 def load_env_file(path=ENV_FILE):
@@ -57,6 +58,7 @@ def _issue(exc):
 
 class PayPalGateway:
     def __init__(self, client_id, client_secret):
+        self._credentials = (client_id, client_secret)
         self.client = PaypalServersdkClient(
             client_credentials_auth_credentials=ClientCredentialsAuthCredentials(
                 o_auth_client_id=client_id, o_auth_client_secret=client_secret
@@ -74,6 +76,23 @@ class PayPalGateway:
         if not client_id or not secret:
             raise RuntimeError(f"PAYPAL_CLIENT_ID and PAYPAL_CLIENT_SECRET must be set (env or {ENV_FILE})")
         return cls(client_id, secret)
+
+    def sign_in_problem(self):
+        """PayPal's reason for refusing these credentials, or None if it accepts them.
+
+        The SDK reports any failed token request as an expired token, whatever PayPal said.
+        """
+        try:
+            r = requests.post(TOKEN_URL, auth=self._credentials, data={"grant_type": "client_credentials"}, timeout=30)
+        except requests.RequestException as exc:
+            return f"PayPal could not be reached ({type(exc).__name__})"
+        if r.ok:
+            return None
+        try:
+            reason = r.json().get("error_description") or r.json().get("error") or ""
+        except ValueError:
+            reason = ""
+        return f"PayPal answered HTTP {r.status_code}{': ' + reason if reason else ''}"
 
     def refund(self, capture_id, cents, request_id, note, custom_id):
         options = {
