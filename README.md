@@ -106,7 +106,7 @@ export PAYPAL_CLIENT_ID=... PAYPAL_CLIENT_SECRET=... ANTHROPIC_API_KEY=...
 
 Open http://localhost:8765 and follow the steps. With a key, Claude reads live, up to a daily cap. Without a key, or past the cap, the demo notice and replies fall back to saved results of real Claude runs on that exact text (`remainder/demo_reading.json`, `remainder/demo_replies_reading.json`) and the page says so. Editing the notice needs a key.
 
-Tests, no network: `.venv/bin/python -m unittest discover -s tests -t .` (53 tests). The fake PayPal in `tests/` copies the behavior measured above.
+Tests, no network: `.venv/bin/python -m unittest discover -s tests -t .` (54 tests). The fake PayPal in `tests/` copies the behavior measured above.
 
 ### Deploy
 
