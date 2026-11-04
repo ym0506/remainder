@@ -36,6 +36,7 @@ DATA.mkdir(parents=True, exist_ok=True)
 DAILY_CLAUDE_CALLS = int(os.environ.get("REMAINDER_DAILY_CLAUDE_CALLS", "300"))
 DAILY_SEASONS = int(os.environ.get("REMAINDER_DAILY_SEASONS", "60"))
 SPARE_SEASONS = int(os.environ.get("REMAINDER_SPARE_SEASONS", "1"))
+MAX_ADDED_REPLIES = 4  # replies a visitor may write into a season's inbox
 
 gateway = PayPalGateway.from_env()
 seeding = {}  # season_id -> {"done": int, "total": int, "error": str}
@@ -129,6 +130,18 @@ def _top_up_spares():
                 spares_pending[0] -= 1
 
 
+def _inbox(ledger):
+    """The season's replies: the demo's six, plus any the visitor wrote."""
+    stored = json.loads(ledger.get_meta("inbox") or "null")
+    return [tuple(x) for x in stored] if stored else list(demo.REPLIES)
+
+
+def _inbox_json(inbox):
+    return [
+        {"reply_id": i, "family": f, "text": t, "added": i >= len(demo.REPLIES)} for i, (f, t) in enumerate(inbox)
+    ]
+
+
 def _payment_json(p):
     return {
         "family_name": p.family_name,
@@ -149,7 +162,7 @@ def demo_text():
     return {
         "notice": demo.NOTICE,
         "title": demo.TITLE,
-        "replies": [{"reply_id": i, "family": f, "text": t} for i, (f, t) in enumerate(demo.REPLIES)],
+        "replies": _inbox_json(demo.REPLIES),
     }
 
 
@@ -213,10 +226,12 @@ def me(season: str | None = Cookie(default=None)):
         if reading and stored_replies:
             sorted_replies = [replies.from_json(d) for d in stored_replies["results"]]
             stored_replies["problems"] = _problems_json(
-                replies.check(sorted_replies, demo.REPLIES, reading["notice"], _plan_families(ledger, reading))
+                replies.check(sorted_replies, _inbox(ledger), reading["notice"], _plan_families(ledger, reading))
             )
         return {
             "season_id": season,
+            "roster": [p.family_name for p in ledger.payments()],
+            "inbox": _inbox_json(_inbox(ledger)),
             "reading": reading,
             "replies": stored_replies,
             "round": _round_json(ledger, round_id) if round_id else None,
@@ -282,18 +297,44 @@ def sort_replies(body: RepliesRequest):
         stored = json.loads(ledger.get_meta("reading") or "null")
         if not stored:
             raise HTTPException(409, "read the notice first")
+        inbox = _inbox(ledger)
         results, source, model, error = None, "claude", notice.MODEL, ""
         if _claude_allowed():
-            results, error = replies.read_with_claude(demo.REPLIES, stored["notice"])
+            results, error = replies.read_with_claude(inbox, stored["notice"])
         if results is None:
-            saved = replies.saved_for(demo.REPLIES, stored["notice"])
+            saved = replies.saved_for(inbox, stored["notice"])
             if saved is None:
                 raise HTTPException(503, error or "Claude is not available for this demo right now")
             (results, model), source = saved, "saved"
         out = {"results": [replies.to_json(s) for s in results], "source": source, "model": model}
         ledger.set_meta("replies", json.dumps(out))
-        problems = replies.check(results, demo.REPLIES, stored["notice"], _plan_families(ledger, stored))
+        problems = replies.check(results, inbox, stored["notice"], _plan_families(ledger, stored))
         return {**out, "problems": _problems_json(problems)}
+    finally:
+        ledger.close()
+
+
+class AddReply(BaseModel):
+    season_id: str
+    family: str = Field(max_length=60)
+    text: str = Field(min_length=1, max_length=600)
+
+
+@app.post("/api/inbox")
+def add_reply(body: AddReply):
+    """A visitor writes a reply from a family. It changes nothing until Claude sorts it and the checks pass."""
+    ledger = _ledger(body.season_id)
+    try:
+        _refuse_if_approved(ledger)
+        if body.family not in {p.family_name for p in ledger.payments()}:
+            raise HTTPException(422, "pick a family from the roster")
+        inbox = _inbox(ledger)
+        if len(inbox) - len(demo.REPLIES) >= MAX_ADDED_REPLIES:
+            raise HTTPException(429, f"up to {MAX_ADDED_REPLIES} replies of your own per season; start a new season for more")
+        inbox.append((body.family, body.text.strip()))
+        ledger.set_meta("inbox", json.dumps([list(x) for x in inbox]))
+        ledger.set_meta("replies", "null")
+        return {"inbox": _inbox_json(inbox)}
     finally:
         ledger.close()
 
@@ -314,6 +355,7 @@ def make_plan(body: PlanRequest):
     try:
         stored = json.loads(source.get_meta("reading") or "null")
         stored_replies = json.loads(source.get_meta("replies") or "null")
+        inbox = _inbox(source)
     finally:
         source.close()
     if not stored or not stored_replies:
@@ -326,7 +368,7 @@ def make_plan(body: PlanRequest):
         sorted_replies = [replies.from_json(d) for d in stored_replies["results"]]
         active = [s for s in sorted_replies if s.reply_id not in body.ignored_replies]
         problems = rules.check(r, stored["notice"], payments) + replies.check(
-            active, demo.REPLIES, stored["notice"], _plan_families(ledger, stored)
+            active, inbox, stored["notice"], _plan_families(ledger, stored)
         )
         still_open = rules.open_problems(problems, set(body.confirmed))
         if still_open:
@@ -335,7 +377,12 @@ def make_plan(body: PlanRequest):
             lines = rules.plan(r, payments, demo.TITLE, keep=replies.keep_list(active))
         except AllocationError as exc:
             raise HTTPException(422, {"problems": [{"field": "pool", "message": str(exc), "confirmable": False}]})
-        record = {**r.to_json(), "confirmed": body.confirmed, "replies": [replies.to_json(s) for s in active]}
+        record = {
+            **r.to_json(),
+            "confirmed": body.confirmed,
+            "replies": [replies.to_json(s) for s in active],
+            "inbox_size": len(inbox),
+        }
         try:
             round_id = ledger.create_round(demo.TITLE, stored["notice"], record, r.pool_cents, lines, not comparison)
         except RoundExists as exc:
@@ -375,7 +422,7 @@ def _round_json(ledger, round_id):
         "extra_cents": sum(1 for r in rows if r.extra_cent),
         "states": states,
         "confirmed": record.get("confirmed", []),
-        "ignored": [i for i in range(len(demo.REPLIES)) if i not in active],
+        "ignored": [i for i in range(record.get("inbox_size", len(demo.REPLIES))) if i not in active],
         "use_request_ids": rnd.use_request_ids,
         "approved": rnd.approved_at is not None,
         "worker": _worker_state(round_id),

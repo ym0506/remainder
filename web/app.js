@@ -1,5 +1,5 @@
 const $ = (sel) => document.querySelector(sel);
-const state = { seasonId: null, reading: null, replies: null, confirmed: [], ignored: [], round: null, check: null };
+const state = { seasonId: null, reading: null, replies: null, confirmed: [], ignored: [], round: null, check: null, inbox: [] };
 
 async function api(method, path, body) {
   const res = await fetch(path, {
@@ -76,7 +76,12 @@ async function waitForSeason(seasonId, progressEl) {
   }
 }
 
+function renderRoster(names) {
+  $("#reply-family").innerHTML = names.map((n) => `<option>${esc(n)}</option>`).join("");
+}
+
 function renderSeason(payments) {
+  renderRoster(payments.map((p) => p.family_name));
   $("#season-table tbody").innerHTML = payments
     .map(
       (p) => `<tr><td>${esc(p.family_name)}</td><td class="n">${p.players}</td><td class="n">${p.paid}</td>` +
@@ -91,7 +96,7 @@ function renderSeason(payments) {
 
 async function openSeason() {
   const { season_id } = await api("POST", "/api/season", { compare: false });
-  Object.assign(state, { seasonId: season_id, reading: null, replies: null, confirmed: [], ignored: [], round: null, check: null });
+  Object.assign(state, { seasonId: season_id, reading: null, replies: null, confirmed: [], ignored: [], round: null, check: null, inbox: state.demo.replies });
   for (const id of ["#s-replies", "#s-plan", "#s-send", "#s-check", "#s-compare", "#reading", "#plan", "#check", "#compare", "#crash-banner", "#summary", "#replies-source"]) $(id).hidden = true;
   $("#replies-problems").innerHTML = "";
   $("#b-send").hidden = false;
@@ -202,11 +207,12 @@ function replyEffect(r) {
 
 function renderInbox() {
   const sorted = state.replies ? Object.fromEntries(state.replies.results.map((r) => [r.reply_id, r])) : {};
-  $("#inbox").innerHTML = state.demo.replies
+  $("#inbox").innerHTML = state.inbox
     .map((m) => {
       const r = sorted[m.reply_id];
       const [label, cls] = r ? KIND[r.kind] : ["", ""];
-      return `<div class="mail"><div class="from">From the ${esc(m.family)} family${r ? ` <span class="kind ${cls}">${label}</span>` : ""}</div>` +
+      return `<div class="mail ${m.added ? "added" : ""}"><div class="from">From the ${esc(m.family)} family${m.added ? " (written by you)" : ""}` +
+        `${r ? ` <span class="kind ${cls}">${label}</span>` : ""}</div>` +
         `<div class="body">${r ? highlighted(m.text, [r.quote]) : esc(m.text)}</div>` +
         (r ? `<div class="effect">${esc(r.summary)} ${replyEffect(r)}</div>` : "") +
         `</div>`;
@@ -239,6 +245,24 @@ async function sortReplies() {
   say("#replies-status", "");
   clearPlan();
   renderReplies();
+}
+
+async function addReply() {
+  const text = $("#reply-text").value.trim();
+  if (!text) throw new Error("Write a reply first.");
+  say("#add-status", "Adding the reply...");
+  const res = await api("POST", "/api/inbox", { season_id: state.seasonId, family: $("#reply-family").value, text });
+  state.inbox = res.inbox;
+  state.replies = null;
+  $("#reply-text").value = "";
+  clearPlan();
+  $("#s-plan").hidden = true;
+  say("#add-status", "");
+  renderInbox();
+  await step("#b-replies", "#replies-status", sortReplies);
+  const mine = state.inbox[state.inbox.length - 1];
+  const card = $("#inbox").children[mine.reply_id];
+  if (card) card.scrollIntoView({ block: "center" });
 }
 
 // 4. Plan
@@ -412,8 +436,16 @@ async function compare() {
 
 async function start() {
   state.demo = await api("GET", "/api/demo");
+  state.inbox = state.demo.replies;
   $("#notice").value = state.demo.notice;
   renderInbox();
+  document.querySelectorAll(".presets button").forEach((b) =>
+    b.addEventListener("click", () => {
+      $("#reply-family").value = b.dataset.family;
+      $("#reply-text").value = b.dataset.text;
+    }),
+  );
+  $("#b-add-reply").addEventListener("click", () => step("#b-add-reply", "#add-status", addReply));
   $("#b-season").addEventListener("click", () => step("#b-season", "#season-status", openSeason));
   $("#b-read").addEventListener("click", () => step("#b-read", "#read-status", readNotice));
   $("#b-replies").addEventListener("click", () => step("#b-replies", "#replies-status", sortReplies));
@@ -427,6 +459,7 @@ async function start() {
   const me = await api("GET", "/api/me");
   if (!me.season_id) return;
   state.seasonId = me.season_id;
+  state.inbox = me.inbox;
   renderSeason((await api("GET", `/api/season/${me.season_id}`)).payments);
   if (me.reading) {
     state.reading = me.reading;
