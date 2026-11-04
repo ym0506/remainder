@@ -40,6 +40,9 @@ def main():
 
         page.click("#b-read")
         page.wait_for_selector("#reading:not([hidden])", timeout=LONG)
+        # Now and then Claude raises a question about the demo notice; clear it as a treasurer would.
+        while page.locator("#reading .problems button").count():
+            page.locator("#reading .problems button").first.click()
         shoot(page, "#s-notice", "01-notice.png")
 
         page.click("#b-replies")

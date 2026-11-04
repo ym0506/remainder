@@ -4,6 +4,8 @@ When a season or event is cut short, the people who paid are owed part of their 
 
 PayPal sandbox only. The league, families and amounts in the demo are made up.
 
+Try it: https://remainder-tyzt.onrender.com (no login; the free host can take a minute to wake up).
+
 ## The problem
 
 A volunteer treasurer who collected 24 registrations through PayPal now has to send up to 24 different partial refunds.
@@ -65,7 +67,7 @@ Before writing the product, the refund API itself (`spike/results/spike-20261101
 
 Claude Haiku 5.5, ten runs per case (`evidence/notice-reading-2026-11-01.json`, `evidence/reply-sorting-2026-11-04.json`):
 
-- Demo notice: 10 of 10 readings passed every check, all ten identical.
+- Demo notice: 10 of 10 readings passed every check, all ten identical. Ten runs is a small sample: on the hosted demo on 2026-11-04 one reading of the same notice asked whether the $15.00 per player changes the basis of the split, and the plan waited for the treasurer's one click.
 - Notice with the amount removed: blocked 10 of 10.
 - Notice excluding "families who paid after the February deadline" without naming them: stopped 10 of 10. Five runs were blocked by the roster check; in the other five Claude excluded nobody and raised a question, which the treasurer clears with one click, after which every family is refunded.
 - Demo notice with the earlier prompt, which did not describe the computation or require whole-sentence quotes: blocked 10 of 10 (9 runs raised questions, such as whether the uniform fee applies to every player; all 10 quoted only part of a sentence somewhere).
@@ -107,6 +109,8 @@ Open http://localhost:8765 and follow the steps. With a key, Claude reads live, 
 Tests, no network: `.venv/bin/python -m unittest discover -s tests -t .` (53 tests). The fake PayPal in `tests/` copies the behavior measured above.
 
 ### Deploy
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ym0506/remainder)
 
 `render.yaml` is a Render Blueprint: one Python web service. Render asks for `PAYPAL_CLIENT_ID`, `PAYPAL_CLIENT_SECRET` and `ANTHROPIC_API_KEY` when the Blueprint is created. On the free plan the service sleeps after 15 idle minutes and its disk is wiped on restart. A visitor then starts a new season; a restart in the middle of sending also loses that season's ledger, though the refunds already made stay at PayPal.
 
