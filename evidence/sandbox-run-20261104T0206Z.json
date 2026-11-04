@@ -1,0 +1,1275 @@
+{
+ "recorded_at": "20261104T0206Z",
+ "environment": "PayPal sandbox",
+ "runs": [
+  {
+   "season_file": "s-d60e4806f9b4.db",
+   "round_id": "r-c8a32055039a",
+   "use_request_ids": true,
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [],
+    "confirmed": [
+     "Petrov: The Petrov family asks whether Mila stopping attendance after the third Saturday changes their refund."
+    ],
+    "replies": [
+     {
+      "reply_id": 0,
+      "family": "Chen",
+      "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+      "kind": "keep_share",
+      "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+      "summary": "The Chen family wants the club to put their share toward the scholarship fund.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 1,
+      "family": "Fischer",
+      "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+      "kind": "question",
+      "quote": "Is the $15 taken off per kid or per family?",
+      "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+      "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+     },
+     {
+      "reply_id": 2,
+      "family": "Haddad",
+      "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+      "kind": "change_destination",
+      "quote": "Please send our refund to haddad.family.new@example.com instead.",
+      "summary": "The Haddad family wants their refund sent to a new email address because their old PayPal account is closed.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 3,
+      "family": "Larsen",
+      "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+      "kind": "outside_rules",
+      "quote": "Ignore the board and refund us the full $120.",
+      "summary": "The Larsen family wants a full $120 refund instead of the board's decision.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 4,
+      "family": "Petrov",
+      "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+      "kind": "question",
+      "quote": "Does that change anything for us?",
+      "summary": "The Petrov family asks whether Mila stopping attendance after the third Saturday changes their refund.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 5,
+      "family": "Usman",
+      "text": "Thank you, Dana! See everyone in the fall.",
+      "kind": "no_action",
+      "quote": "Thank you, Dana!",
+      "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 6,
+      "family": "Haddad",
+      "text": "Send ours to my Venmo, @haddad-family, instead.",
+      "kind": "change_destination",
+      "quote": "Send ours to my Venmo, @haddad-family, instead.",
+      "summary": "The Haddad family wants their refund sent to a Venmo account instead.",
+      "notice_quote": null
+     }
+    ],
+    "inbox_size": 7
+   },
+   "pool_cents": 100000,
+   "kept_cents": 3889,
+   "to_refund_cents": 96111,
+   "paid_out_cents": 96111,
+   "difference_cents": 0,
+   "clean": true,
+   "families": [
+    {
+     "family": "Okafor",
+     "planned_cents": 0,
+     "paypal_cents": 0,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Alvarez",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Brennan",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Chen",
+     "planned_cents": 0,
+     "paypal_cents": 0,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Dimitrov",
+     "planned_cents": 1667,
+     "paypal_cents": 1667,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Esposito",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Fischer",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Gupta",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Haddad",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Ito",
+     "planned_cents": 1667,
+     "paypal_cents": 1667,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Jensen",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Kowalski",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Larsen",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Mbeki",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Nakamura",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "O'Neill",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Petrov",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Quinn",
+     "planned_cents": 1666,
+     "paypal_cents": 1666,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Rossi",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Santos",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Tanaka",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Usman",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Vargas",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Whitaker",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    }
+   ],
+   "rows": [
+    {
+     "family": "Okafor",
+     "state": "SKIPPED",
+     "refund_id": null,
+     "detail": ""
+    },
+    {
+     "family": "Alvarez",
+     "state": "DONE",
+     "refund_id": "3SC58394H52015633",
+     "detail": ""
+    },
+    {
+     "family": "Brennan",
+     "state": "DONE",
+     "refund_id": "7SY31391GS8102237",
+     "detail": ""
+    },
+    {
+     "family": "Chen",
+     "state": "SKIPPED",
+     "refund_id": null,
+     "detail": ""
+    },
+    {
+     "family": "Dimitrov",
+     "state": "DONE",
+     "refund_id": "5X067814P3272990U",
+     "detail": ""
+    },
+    {
+     "family": "Esposito",
+     "state": "DONE",
+     "refund_id": "5DW46835EU358511B",
+     "detail": ""
+    },
+    {
+     "family": "Fischer",
+     "state": "DONE",
+     "refund_id": "4Y944088G96969032",
+     "detail": ""
+    },
+    {
+     "family": "Gupta",
+     "state": "DONE",
+     "refund_id": "5JJ31350FL817543X",
+     "detail": ""
+    },
+    {
+     "family": "Haddad",
+     "state": "DONE",
+     "refund_id": "5CW99319UF7011028",
+     "detail": ""
+    },
+    {
+     "family": "Ito",
+     "state": "DONE",
+     "refund_id": "55W32193WP819762K",
+     "detail": ""
+    },
+    {
+     "family": "Jensen",
+     "state": "DONE",
+     "refund_id": "6YD26958L9112083X",
+     "detail": "PayPal already had this refund; it was not sent again"
+    },
+    {
+     "family": "Kowalski",
+     "state": "DONE",
+     "refund_id": "7NF72544W70999547",
+     "detail": ""
+    },
+    {
+     "family": "Larsen",
+     "state": "DONE",
+     "refund_id": "1W086872F58607039",
+     "detail": ""
+    },
+    {
+     "family": "Mbeki",
+     "state": "DONE",
+     "refund_id": "7RA58424AH546134X",
+     "detail": ""
+    },
+    {
+     "family": "Nakamura",
+     "state": "DONE",
+     "refund_id": "3TX7207774093145T",
+     "detail": ""
+    },
+    {
+     "family": "O'Neill",
+     "state": "DONE",
+     "refund_id": "6DM78577UY2980830",
+     "detail": ""
+    },
+    {
+     "family": "Petrov",
+     "state": "DONE",
+     "refund_id": "8XG57535TX2013352",
+     "detail": ""
+    },
+    {
+     "family": "Quinn",
+     "state": "DONE",
+     "refund_id": "0KP00757YP938114R",
+     "detail": ""
+    },
+    {
+     "family": "Rossi",
+     "state": "DONE",
+     "refund_id": "9BH810893S698091B",
+     "detail": ""
+    },
+    {
+     "family": "Santos",
+     "state": "DONE",
+     "refund_id": "5XK27507HR485845P",
+     "detail": ""
+    },
+    {
+     "family": "Tanaka",
+     "state": "DONE",
+     "refund_id": "7F957539C0919954T",
+     "detail": ""
+    },
+    {
+     "family": "Usman",
+     "state": "DONE",
+     "refund_id": "2EN474830W946262N",
+     "detail": ""
+    },
+    {
+     "family": "Vargas",
+     "state": "DONE",
+     "refund_id": "33044031VP1548825",
+     "detail": ""
+    },
+    {
+     "family": "Whitaker",
+     "state": "DONE",
+     "refund_id": "7SJ96223NE808032C",
+     "detail": ""
+    }
+   ],
+   "attempts": [
+    {
+     "attempt_id": 1,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f02",
+     "request_id": "89647fb6-66a5-504a-8cae-3a5a4eae6b5c",
+     "sent_at": "2026-11-04T02:01:38.481+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "3SC58394H52015633",
+     "error": ""
+    },
+    {
+     "attempt_id": 2,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f03",
+     "request_id": "1ec32736-c5b2-51cc-bcbc-0629216f3c2f",
+     "sent_at": "2026-11-04T02:01:40.585+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "7SY31391GS8102237",
+     "error": ""
+    },
+    {
+     "attempt_id": 3,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f05",
+     "request_id": "c4473c62-a011-5c25-97e8-b352c4e37bd0",
+     "sent_at": "2026-11-04T02:01:42.522+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "5X067814P3272990U",
+     "error": ""
+    },
+    {
+     "attempt_id": 4,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f06",
+     "request_id": "9690afe1-7b52-5ba2-af4f-8be6bf038dcd",
+     "sent_at": "2026-11-04T02:01:44.458+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "5DW46835EU358511B",
+     "error": ""
+    },
+    {
+     "attempt_id": 5,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f07",
+     "request_id": "36b9063b-4961-5adf-9ffc-18a9b1539ee3",
+     "sent_at": "2026-11-04T02:01:46.557+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "4Y944088G96969032",
+     "error": ""
+    },
+    {
+     "attempt_id": 6,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f08",
+     "request_id": "5dc94e45-82f9-578d-a9dc-7ca538802af2",
+     "sent_at": "2026-11-04T02:01:48.749+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "5JJ31350FL817543X",
+     "error": ""
+    },
+    {
+     "attempt_id": 7,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f09",
+     "request_id": "f101f78e-207a-5518-9666-b53353982e63",
+     "sent_at": "2026-11-04T02:01:50.873+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "5CW99319UF7011028",
+     "error": ""
+    },
+    {
+     "attempt_id": 8,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f10",
+     "request_id": "dc7a205c-04d5-54ad-bf91-fb53a721568a",
+     "sent_at": "2026-11-04T02:01:53.031+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "55W32193WP819762K",
+     "error": ""
+    },
+    {
+     "attempt_id": 9,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f11",
+     "request_id": "3ce94c71-dce9-52a2-9819-7db9cfedc1fd",
+     "sent_at": "2026-11-04T02:01:58.409+00:00",
+     "http_status": null,
+     "paypal_refund_id": "6YD26958L9112083X",
+     "error": "found on the order by custom_id; not sent"
+    },
+    {
+     "attempt_id": 10,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f12",
+     "request_id": "6fed461e-2065-5d21-b67b-b778373fdf75",
+     "sent_at": "2026-11-04T02:02:01.743+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "7NF72544W70999547",
+     "error": ""
+    },
+    {
+     "attempt_id": 11,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f13",
+     "request_id": "56d3a6a5-181c-5267-93dc-8aec0e89ee0f",
+     "sent_at": "2026-11-04T02:02:03.875+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "1W086872F58607039",
+     "error": ""
+    },
+    {
+     "attempt_id": 12,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f14",
+     "request_id": "de37dec4-4cca-573d-880c-da26684a0380",
+     "sent_at": "2026-11-04T02:02:06.807+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "7RA58424AH546134X",
+     "error": ""
+    },
+    {
+     "attempt_id": 13,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f15",
+     "request_id": "c45d6c65-6221-55c2-ba06-565b9b3168dd",
+     "sent_at": "2026-11-04T02:02:08.991+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "3TX7207774093145T",
+     "error": ""
+    },
+    {
+     "attempt_id": 14,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f16",
+     "request_id": "dfb1e8f5-5564-5300-affc-c4a3c13d74c4",
+     "sent_at": "2026-11-04T02:02:12.022+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "6DM78577UY2980830",
+     "error": ""
+    },
+    {
+     "attempt_id": 15,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f17",
+     "request_id": "3728996d-99b4-5f0e-a53a-0fee2639c271",
+     "sent_at": "2026-11-04T02:02:14.651+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "8XG57535TX2013352",
+     "error": ""
+    },
+    {
+     "attempt_id": 16,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f18",
+     "request_id": "fb914e4c-127f-59fd-b3ea-d474efd5848a",
+     "sent_at": "2026-11-04T02:02:17.426+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "0KP00757YP938114R",
+     "error": ""
+    },
+    {
+     "attempt_id": 17,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f19",
+     "request_id": "78710ee1-9627-59cd-a181-e4619b3417eb",
+     "sent_at": "2026-11-04T02:02:20.427+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "9BH810893S698091B",
+     "error": ""
+    },
+    {
+     "attempt_id": 18,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f20",
+     "request_id": "1f0a16bd-1c33-512f-aaf7-107e68a84b65",
+     "sent_at": "2026-11-04T02:02:23.443+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "5XK27507HR485845P",
+     "error": ""
+    },
+    {
+     "attempt_id": 19,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f21",
+     "request_id": "e15ff3f8-9e9e-55ff-8b67-a8cdff649e6e",
+     "sent_at": "2026-11-04T02:02:26.405+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "7F957539C0919954T",
+     "error": ""
+    },
+    {
+     "attempt_id": 20,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f22",
+     "request_id": "2e5c5be9-f518-5a7a-bd46-b16aa601d004",
+     "sent_at": "2026-11-04T02:02:29.547+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "2EN474830W946262N",
+     "error": ""
+    },
+    {
+     "attempt_id": 21,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f23",
+     "request_id": "00f475a2-c190-5642-8de8-6a39e6f762a4",
+     "sent_at": "2026-11-04T02:02:31.531+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "33044031VP1548825",
+     "error": ""
+    },
+    {
+     "attempt_id": 22,
+     "round_id": "r-c8a32055039a",
+     "family_id": "f24",
+     "request_id": "7b9623d0-59aa-5a1a-91b2-92498746b2c1",
+     "sent_at": "2026-11-04T02:02:34.473+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "7SJ96223NE808032C",
+     "error": ""
+    }
+   ]
+  },
+  {
+   "season_file": "cmp-72b8f2db4590.db",
+   "round_id": "r-b8f06556eec9",
+   "use_request_ids": false,
+   "rules": {
+    "pool_amount": "1000.00",
+    "pool_quote": "The city has refunded $1,000.00 of our field permit, and on Thursday the board voted to return all of it to you, split in proportion to what each family paid for registration.",
+    "non_refundable_per_player": "15.00",
+    "non_refundable_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player.",
+    "excluded_families": [
+     {
+      "family": "Okafor",
+      "reason": "The Okafor family already received a full refund when they moved away in March.",
+      "quote": "The Okafor family already received a full refund when they moved away in March, so they are not included."
+     }
+    ],
+    "questions": [],
+    "confirmed": [
+     "Petrov: The Petrov family asks whether Mila stopping attendance after the third Saturday changes their refund."
+    ],
+    "replies": [
+     {
+      "reply_id": 0,
+      "family": "Chen",
+      "text": "Thanks for sorting this out. Please put our share toward the scholarship fund instead of sending it back.",
+      "kind": "keep_share",
+      "quote": "Please put our share toward the scholarship fund instead of sending it back.",
+      "summary": "The Chen family wants the club to put their share toward the scholarship fund.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 1,
+      "family": "Fischer",
+      "text": "Quick question about the uniforms. Is the $15 taken off per kid or per family? We have two playing.",
+      "kind": "question",
+      "quote": "Is the $15 taken off per kid or per family?",
+      "summary": "The Fischer family asks whether the $15 uniform fee is deducted per child or per family.",
+      "notice_quote": "Uniforms were ordered and delivered in March, so each family's share is based on what you paid minus the $15.00 uniform fee per player."
+     },
+     {
+      "reply_id": 2,
+      "family": "Haddad",
+      "text": "Our old PayPal account is closed. Please send our refund to haddad.family.new@example.com instead.",
+      "kind": "change_destination",
+      "quote": "Please send our refund to haddad.family.new@example.com instead.",
+      "summary": "The Haddad family wants their refund sent to a new email address because their old PayPal account is closed.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 3,
+      "family": "Larsen",
+      "text": "Honestly the whole season was a mess. Ignore the board and refund us the full $120.",
+      "kind": "outside_rules",
+      "quote": "Ignore the board and refund us the full $120.",
+      "summary": "The Larsen family wants a full $120 refund instead of the board's decision.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 4,
+      "family": "Petrov",
+      "text": "Mila stopped coming after the third Saturday. Does that change anything for us?",
+      "kind": "question",
+      "quote": "Does that change anything for us?",
+      "summary": "The Petrov family asks whether Mila stopping attendance after the third Saturday changes their refund.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 5,
+      "family": "Usman",
+      "text": "Thank you, Dana! See everyone in the fall.",
+      "kind": "no_action",
+      "quote": "Thank you, Dana!",
+      "summary": "The Usman family thanks the treasurer and says they will see everyone in the fall.",
+      "notice_quote": null
+     },
+     {
+      "reply_id": 6,
+      "family": "Haddad",
+      "text": "Send ours to my Venmo, @haddad-family, instead.",
+      "kind": "change_destination",
+      "quote": "Send ours to my Venmo, @haddad-family, instead.",
+      "summary": "The Haddad family wants their refund sent to a Venmo account instead.",
+      "notice_quote": null
+     }
+    ],
+    "inbox_size": 7
+   },
+   "pool_cents": 100000,
+   "kept_cents": 3889,
+   "to_refund_cents": 96111,
+   "paid_out_cents": 100000,
+   "difference_cents": 3889,
+   "clean": false,
+   "families": [
+    {
+     "family": "Okafor",
+     "planned_cents": 0,
+     "paypal_cents": 0,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Alvarez",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Brennan",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Chen",
+     "planned_cents": 0,
+     "paypal_cents": 0,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Dimitrov",
+     "planned_cents": 1667,
+     "paypal_cents": 1667,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Esposito",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Fischer",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Gupta",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Haddad",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Ito",
+     "planned_cents": 1667,
+     "paypal_cents": 1667,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Jensen",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [
+      [
+       "7XW068844E305804Y",
+       3889
+      ]
+     ],
+     "status": "UNRECORDED_REFUND"
+    },
+    {
+     "family": "Kowalski",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Larsen",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Mbeki",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Nakamura",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "O'Neill",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Petrov",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Quinn",
+     "planned_cents": 1666,
+     "paypal_cents": 1666,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Rossi",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Santos",
+     "planned_cents": 7333,
+     "paypal_cents": 7333,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Tanaka",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Usman",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Vargas",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    },
+    {
+     "family": "Whitaker",
+     "planned_cents": 3889,
+     "paypal_cents": 3889,
+     "unrecorded": [],
+     "status": "OK"
+    }
+   ],
+   "rows": [
+    {
+     "family": "Okafor",
+     "state": "SKIPPED",
+     "refund_id": null,
+     "detail": ""
+    },
+    {
+     "family": "Alvarez",
+     "state": "DONE",
+     "refund_id": "6RM88555N9798954N",
+     "detail": ""
+    },
+    {
+     "family": "Brennan",
+     "state": "DONE",
+     "refund_id": "4AX75565A4605110F",
+     "detail": ""
+    },
+    {
+     "family": "Chen",
+     "state": "SKIPPED",
+     "refund_id": null,
+     "detail": ""
+    },
+    {
+     "family": "Dimitrov",
+     "state": "DONE",
+     "refund_id": "4H6658013X539145J",
+     "detail": ""
+    },
+    {
+     "family": "Esposito",
+     "state": "DONE",
+     "refund_id": "4JC83149U55938706",
+     "detail": ""
+    },
+    {
+     "family": "Fischer",
+     "state": "DONE",
+     "refund_id": "33Y66731UT332070N",
+     "detail": ""
+    },
+    {
+     "family": "Gupta",
+     "state": "DONE",
+     "refund_id": "1HK43262351794248",
+     "detail": ""
+    },
+    {
+     "family": "Haddad",
+     "state": "DONE",
+     "refund_id": "96H71089SR025054G",
+     "detail": ""
+    },
+    {
+     "family": "Ito",
+     "state": "DONE",
+     "refund_id": "0H413463TK7299311",
+     "detail": ""
+    },
+    {
+     "family": "Jensen",
+     "state": "DONE",
+     "refund_id": "8NU39861VW616672K",
+     "detail": ""
+    },
+    {
+     "family": "Kowalski",
+     "state": "DONE",
+     "refund_id": "33D57221J94771349",
+     "detail": ""
+    },
+    {
+     "family": "Larsen",
+     "state": "DONE",
+     "refund_id": "2AS14009W0654332R",
+     "detail": ""
+    },
+    {
+     "family": "Mbeki",
+     "state": "DONE",
+     "refund_id": "6TF011175H1754540",
+     "detail": ""
+    },
+    {
+     "family": "Nakamura",
+     "state": "DONE",
+     "refund_id": "9C009078VE682230S",
+     "detail": ""
+    },
+    {
+     "family": "O'Neill",
+     "state": "DONE",
+     "refund_id": "4DS09805BG197593C",
+     "detail": ""
+    },
+    {
+     "family": "Petrov",
+     "state": "DONE",
+     "refund_id": "9XN67715JF4329516",
+     "detail": ""
+    },
+    {
+     "family": "Quinn",
+     "state": "DONE",
+     "refund_id": "1N126207VE8046816",
+     "detail": ""
+    },
+    {
+     "family": "Rossi",
+     "state": "DONE",
+     "refund_id": "81P7929447585254W",
+     "detail": ""
+    },
+    {
+     "family": "Santos",
+     "state": "DONE",
+     "refund_id": "35R20348GN646074P",
+     "detail": ""
+    },
+    {
+     "family": "Tanaka",
+     "state": "DONE",
+     "refund_id": "1N4870346D3262916",
+     "detail": ""
+    },
+    {
+     "family": "Usman",
+     "state": "DONE",
+     "refund_id": "7LK24204RR199983T",
+     "detail": ""
+    },
+    {
+     "family": "Vargas",
+     "state": "DONE",
+     "refund_id": "70210854ND499891V",
+     "detail": ""
+    },
+    {
+     "family": "Whitaker",
+     "state": "DONE",
+     "refund_id": "2WX29785UL4443907",
+     "detail": ""
+    }
+   ],
+   "attempts": [
+    {
+     "attempt_id": 1,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f02",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:27.738+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "6RM88555N9798954N",
+     "error": ""
+    },
+    {
+     "attempt_id": 2,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f03",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:30.234+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "4AX75565A4605110F",
+     "error": ""
+    },
+    {
+     "attempt_id": 3,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f05",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:32.140+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "4H6658013X539145J",
+     "error": ""
+    },
+    {
+     "attempt_id": 4,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f06",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:35.156+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "4JC83149U55938706",
+     "error": ""
+    },
+    {
+     "attempt_id": 5,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f07",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:38.132+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "33Y66731UT332070N",
+     "error": ""
+    },
+    {
+     "attempt_id": 6,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f08",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:39.832+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "1HK43262351794248",
+     "error": ""
+    },
+    {
+     "attempt_id": 7,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f09",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:42.843+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "96H71089SR025054G",
+     "error": ""
+    },
+    {
+     "attempt_id": 8,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f10",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:45.630+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "0H413463TK7299311",
+     "error": ""
+    },
+    {
+     "attempt_id": 9,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f11",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:52.163+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "8NU39861VW616672K",
+     "error": ""
+    },
+    {
+     "attempt_id": 10,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f12",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:54.133+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "33D57221J94771349",
+     "error": ""
+    },
+    {
+     "attempt_id": 11,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f13",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:56.111+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "2AS14009W0654332R",
+     "error": ""
+    },
+    {
+     "attempt_id": 12,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f14",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:57.680+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "6TF011175H1754540",
+     "error": ""
+    },
+    {
+     "attempt_id": 13,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f15",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:03:59.878+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "9C009078VE682230S",
+     "error": ""
+    },
+    {
+     "attempt_id": 14,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f16",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:01.888+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "4DS09805BG197593C",
+     "error": ""
+    },
+    {
+     "attempt_id": 15,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f17",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:03.513+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "9XN67715JF4329516",
+     "error": ""
+    },
+    {
+     "attempt_id": 16,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f18",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:05.525+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "1N126207VE8046816",
+     "error": ""
+    },
+    {
+     "attempt_id": 17,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f19",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:07.886+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "81P7929447585254W",
+     "error": ""
+    },
+    {
+     "attempt_id": 18,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f20",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:09.981+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "35R20348GN646074P",
+     "error": ""
+    },
+    {
+     "attempt_id": 19,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f21",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:12.220+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "1N4870346D3262916",
+     "error": ""
+    },
+    {
+     "attempt_id": 20,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f22",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:14.249+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "7LK24204RR199983T",
+     "error": ""
+    },
+    {
+     "attempt_id": 21,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f23",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:16.276+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "70210854ND499891V",
+     "error": ""
+    },
+    {
+     "attempt_id": 22,
+     "round_id": "r-b8f06556eec9",
+     "family_id": "f24",
+     "request_id": null,
+     "sent_at": "2026-11-04T02:04:18.545+00:00",
+     "http_status": 201,
+     "paypal_refund_id": "2WX29785UL4443907",
+     "error": ""
+    }
+   ]
+  }
+ ]
+}

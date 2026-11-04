@@ -172,7 +172,7 @@ class Ledger:
             "SELECT p.family_id, p.family_name, p.players, p.paid_cents,"
             " p.refunded_before_cents + COALESCE((SELECT SUM(share_cents) FROM plan_rows pr"
             "   WHERE pr.family_id = p.family_id AND pr.state IN ('DONE', 'SENDING')), 0) AS refunded_before_cents,"
-            " p.order_id, p.capture_id, p.paid_at FROM payments p ORDER BY p.paid_at, p.family_id"
+            " p.order_id, p.capture_id, p.paid_at FROM payments p ORDER BY p.family_id"
         ).fetchall()
         return [Payment(**dict(r)) for r in rows]
 
@@ -248,7 +248,7 @@ class Ledger:
         if states:
             sql += f" AND pr.state IN ({','.join('?' * len(states))})"
             args += list(states)
-        sql += " ORDER BY p.paid_at, pr.family_id"
+        sql += " ORDER BY pr.family_id"
         out = []
         for r in self.db.execute(sql, args).fetchall():
             d = dict(r)

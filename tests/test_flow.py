@@ -37,13 +37,13 @@ def crash():
 
 
 class Season:
-    def __init__(self, testcase):
+    def __init__(self, testcase, paid_in_reverse=False):
         tmp = tempfile.TemporaryDirectory()
         testcase.addCleanup(tmp.cleanup)
         self.ledger = Ledger(str(Path(tmp.name) / "ledger.db"))
         testcase.addCleanup(self.ledger.close)
         self.paypal = FakePayPal()
-        clock = itertools.count()
+        clock = itertools.count(59, -1) if paid_in_reverse else itertools.count()
 
         def pay(label, cents):
             order_id, capture_id = f"O-{label}", f"C-{label}"
@@ -247,6 +247,16 @@ class RunTest(unittest.TestCase):
         report = reconcile(self.season.ledger, self.season.paypal, round_id)
         self.assertTrue(report.clean)
         self.assertEqual(report.difference_cents, 0)
+
+    def test_refunds_go_out_in_roster_order_whatever_the_payment_times(self):
+        # The demo creates its payments in parallel, so their times come back in any order.
+        shuffled = Season(self, paid_in_reverse=True)
+        round_id = shuffled.round()
+        with self.assertRaises(SimulatedCrash):
+            run(shuffled.ledger, shuffled.paypal, round_id, crash_after_send=9, die=crash, log=lambda m: None)
+        sending = shuffled.ledger.rows(round_id, states=("SENDING",))
+        # Ninth in the roster once the excluded Okafor family is left out.
+        self.assertEqual([r.family_name for r in sending], ["Ito"])
 
     def test_same_crash_without_request_ids_pays_one_family_twice(self):
         round_id = self.season.round(use_request_ids=False)

@@ -19,7 +19,8 @@ Dana Whitfield, Treasurer"""
 
 FULL, SIBLING, SCHOLARSHIP = 12000, 10800, 6000
 
-# (family name, fees per player). Order is the order they paid in.
+# (family name, fees per player), in roster order. Refunds go out in this order; payment times
+# come from the sandbox, where the payments are created in parallel.
 FAMILIES = [
     ("Okafor", [FULL]),
     ("Alvarez", [FULL]),
