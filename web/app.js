@@ -435,7 +435,13 @@ async function compare() {
 // Start, and pick up where this visitor left off
 
 async function start() {
-  state.demo = await api("GET", "/api/demo");
+  // The buttons stay inert until the demo text is here; openSeason needs it.
+  try {
+    state.demo = await api("GET", "/api/demo");
+  } catch (e) {
+    say("#season-status", `The demo didn't load (${e.message}). Reload the page.`, true);
+    return;
+  }
   state.inbox = state.demo.replies;
   $("#notice").value = state.demo.notice;
   renderInbox();
@@ -455,6 +461,7 @@ async function start() {
   $("#b-check").addEventListener("click", () => step("#b-check", "#check-status", check));
   $("#b-compare").addEventListener("click", () => step("#b-compare", "#compare-status", compare));
   $("#show-math").addEventListener("change", (e) => $("#plan").classList.toggle("with-math", e.target.checked));
+  $("#b-season").disabled = false;
 
   const me = await api("GET", "/api/me");
   if (!me.season_id) return;
