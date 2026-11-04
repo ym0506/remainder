@@ -425,7 +425,11 @@ async function compare() {
   const total = round.refunds;
   const count = (r) => r.states.DONE || 0;
   await runUntilStopped(season_id, round.round_id, 9, (r) => setProgress(progress, count(r), total, `Sent ${count(r)} of ${total} without request IDs, then the same crash after #9`));
-  await runUntilStopped(season_id, round.round_id, null, (r) => setProgress(progress, count(r), total, `Plain retry: ${count(r)} of ${total}`));
+  let after = await runUntilStopped(season_id, round.round_id, null, (r) => setProgress(progress, count(r), total, `Plain retry: ${count(r)} of ${total}`));
+  // A plain retry script goes again while refunds are left without an answer (a 429 or 5xx from PayPal).
+  for (let pass = 2; pass <= 3 && (after.states.PLANNED || 0) + (after.states.SENDING || 0); pass++) {
+    after = await runUntilStopped(season_id, round.round_id, null, (r) => setProgress(progress, count(r), total, `Plain retry, pass ${pass}: ${count(r)} of ${total}`));
+  }
   progress.hidden = true;
   say("#compare-status", "Reading every order back from PayPal...");
   renderCheck(await api("GET", `/api/reconcile/${season_id}/${round.round_id}`), $("#compare"));
