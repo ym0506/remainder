@@ -4,7 +4,7 @@ When a season or event is cut short, the people who paid are owed part of their 
 
 PayPal sandbox only. The league, families and amounts in the demo are made up.
 
-Try it: https://remainder-tyzt.onrender.com (no login; the free host can take a minute to wake up).
+Try it: https://remainder-tyzt.onrender.com (no login; the free host can take a minute to wake up). Video (2:53): https://youtu.be/Rne0NzgKWNs
 
 ## The problem
 
