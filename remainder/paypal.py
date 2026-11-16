@@ -6,6 +6,7 @@ Only the sandbox environment is ever configured here.
 """
 
 import hashlib
+import sys
 import os
 import uuid
 from pathlib import Path
@@ -100,8 +101,10 @@ class PayPalGateway:
             reason = ""
         answer = f"PayPal answered HTTP {r.status_code}{': ' + reason if reason else ''}"
         if r.status_code == 401:
+            # For the operator only: lets them compare the deployed credentials with their own copy.
+            # Kept out of the page, which any visitor can see.
             client_id, secret = self._credentials
-            answer += f" (this server's client ID: {_fingerprint(client_id)}; secret: {_fingerprint(secret)})"
+            print(f"PayPal 401: client ID {_fingerprint(client_id)}; secret {_fingerprint(secret)}", file=sys.stderr)
         return answer
 
     def refund(self, capture_id, cents, request_id, note, custom_id):

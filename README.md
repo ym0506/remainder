@@ -6,6 +6,8 @@ PayPal sandbox only. The league, families and amounts in the demo are made up.
 
 Try it: https://remainder-tyzt.onrender.com (no login; the free host can take a minute to wake up). Video (2:53): https://youtu.be/Rne0NzgKWNs
 
+Measured in the PayPal sandbox: with the sender killed right after refund #9 of 22 and restarted, PayPal's refunds matched the plan ($961.11, difference $0.00). The same run without request IDs and the lookup refunded $1,000.00 (+$38.89; one family paid twice).
+
 ## The problem
 
 A volunteer treasurer who collected 24 registrations through PayPal now has to send up to 24 different partial refunds.
